@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a5d510672ce31644da6f24e32f68f3c0, type: 3}
-  m_Name: Test Pickable Item
+  m_Name: Pickable Item
   m_EditorClassIdentifier: 
-  weight: 2
-  size: 2
-  basePickupTime: 2
+  weight: 1
+  size: 3
+  basePickupTime: 10
   resource: 0

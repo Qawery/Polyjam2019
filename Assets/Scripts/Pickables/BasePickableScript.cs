@@ -49,7 +49,6 @@ namespace Polyjam2019.Pickables
             while(timeLeft > 0)
             {
                 Debug.Log(timeLeft);
-
                 timeLeft -= Time.deltaTime;
                 yield return null;
             }
@@ -100,7 +99,6 @@ namespace Polyjam2019.Pickables
 
         private void OnTriggerEnter2D(Collider2D collider)
         {
-            Debug.Log("trigger entry");
             triggerer = collider;
 
             OnEntry();
@@ -108,8 +106,6 @@ namespace Polyjam2019.Pickables
 
         private void OnTriggerExit2D(Collider2D collider)
         {
-            Debug.Log("trigger exit");
-
             triggerer = null;
 
             OnExit();
