@@ -81,7 +81,7 @@ namespace Polyjam2019
             return result;
         }
 
-        public IEnumerator<PickableData> GetItemsIterator()
+        public IEnumerable<PickableData> GetItemsIterator()
         {
             if(itemsInEquipment != null)
             {
