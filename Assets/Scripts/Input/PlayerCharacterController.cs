@@ -2,13 +2,13 @@
 
 
 [RequireComponent(typeof(CharacterMovement))]
+[RequireComponent(typeof(CombatComponent))]
 public class PlayerCharacterController : MonoBehaviour
 {
 	[SerializeField] private float minDistanceToCursor = 0.1f;
 	[SerializeField] private float maxDistanceToCursor = 2f;
 	[SerializeField] private float distanceFalloffExponent = 1.0f;	
 	private CharacterMovement movement;
-
 	
 	private void Awake()
 	{

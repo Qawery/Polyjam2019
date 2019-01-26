@@ -44,32 +44,24 @@ public class CharacterAnimationController : MonoBehaviour
 		meleeModeHash = Animator.StringToHash(meleeModeKey);
 		meleeAttackTriggerHash = Animator.StringToHash(meleeAttackTriggerKey);
 		gunAttackTriggerHash = Animator.StringToHash(gunAttackTriggerKey);
+		
+		var combat = GetComponent<CombatComponent>();
+		combat.OnShot += OnShot;
+		combat.OnMeleeAttack += OnMeleeAttack;
 	}
 
+	private void OnMeleeAttack()
+	{
+		animator.SetTrigger(meleeAttackTriggerHash);
+	}
+
+	private void OnShot()
+	{
+		animator.SetTrigger(gunAttackTriggerHash);
+	}
+	
 	void Update()
 	{
 		animator.SetFloat(walkSpeedHash, Mathf.Clamp(rigidbody2D.velocity.magnitude * animationSpeedMultiplier, minAnimationSpeed, maxAnimationSpeed));
-		
-		//DEBUG - animations will be triggered by attack component events when it's implemented
-		timer += Time.deltaTime;
-		if (timer > 2)
-		{
-			timer = 0;
-			switch (debugMode)
-			{
-				case DebugMode.Walking:
-					animator.SetBool(meleeModeHash, !animator.GetBool(meleeModeHash));
-					break;
-				case DebugMode.Shooting:
-					animator.SetTrigger(gunAttackTriggerHash);
-					break;
-				case DebugMode.MeleeAttack:
-					animator.SetTrigger(meleeAttackTriggerHash);
-					break;
-				default:
-					break;
-			}
-		}
-		//END_DEBUG
 	}
 }
