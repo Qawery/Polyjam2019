@@ -54,7 +54,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\TestScripts.cs" />
+    <Compile Include="Assets\Scripts\CharacterMovement.cs" />
+    <Compile Include="Assets\Scripts\PlayerCharacterController.cs" />
+    <Compile Include="Assets\Scripts\TimeManagerScript.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Repos/UnityProjects/Polyjam2019/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
