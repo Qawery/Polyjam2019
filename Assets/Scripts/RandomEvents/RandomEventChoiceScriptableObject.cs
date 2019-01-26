@@ -66,6 +66,17 @@ namespace Polyjam2019
         [SerializeField]
         private int weight;
 
+        [SerializeField]
+        private EffectBase[] effects;
+
         public int Weight { get { return weight; } }
+
+        public IEnumerator<EffectBase> GetEffects()
+        {
+            foreach(EffectBase effect in effects)
+            {
+                yield return effect;
+            }
+        }
     }
 }
