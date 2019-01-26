@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 
+
 public class CharacterMovement : MonoBehaviour
 {
 	[SerializeField] private float rotationSpeedDegrees = 360.0f;
 	[SerializeField] private float velocityChangeSpeed = 1.0f; //TODO: add Range attribute
 	[SerializeField] private float maxSpeed = 2.0f;
-
 	[SerializeField] private float maxRotDifToStartMovement = 5.0f;
-	
 	private new Rigidbody2D rigidbody2D;
 	public Vector2 TargetVelocity { get; private set; }
 	
+
 	/// <summary>
 	/// Sets target direction and speed.
 	/// </summary>

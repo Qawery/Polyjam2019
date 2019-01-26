@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 
+
 [RequireComponent(typeof(CharacterMovement))]
 public class PlayerCharacterController : MonoBehaviour
 {
 	[SerializeField] private float minDistanceToCursor = 0.1f;
 	[SerializeField] private float maxDistanceToCursor = 2f;
-	[SerializeField] private float distanceFalloffExponent = 1.0f;
-	
+	[SerializeField] private float distanceFalloffExponent = 1.0f;	
 	private CharacterMovement movement;
+
 	
 	private void Awake()
 	{
