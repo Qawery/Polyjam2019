@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 763175360361433338}
   - component: {fileID: 491381009412043974}
   - component: {fileID: 3430681892415836153}
+  - component: {fileID: 3066175009075708527}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -223,3 +224,20 @@ MonoBehaviour:
   meleeAttackTriggerKey: meleeTrigger
   gunAttackTriggerKey: gunTrigger
   debugMode: 2
+--- !u!114 &3066175009075708527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4507089318037479748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a293f2bba61af04e98c5d809e674c85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxWeight: 0
+  maxSize: 0
+  limitWeight: 0
+  limitSize: 0
+  CurrentlyAvailableItem: {fileID: 0}
