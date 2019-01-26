@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Polyjam2019;
+using UnityEngine;
 
 
 [RequireComponent(typeof(CharacterMovement))]
@@ -8,12 +9,14 @@ public class PlayerCharacterController : MonoBehaviour
 	[SerializeField] private float maxDistanceToCursor = 2f;
 	[SerializeField] private float distanceFalloffExponent = 1.0f;	
 	private CharacterMovement movement;
-
+    private CharacterEquipment equipment;
 	
 	private void Awake()
 	{
 		movement = GetComponent<CharacterMovement>();
 		distanceFalloffExponent = Mathf.Max(0, distanceFalloffExponent);
+
+        equipment = GetComponent<CharacterEquipment>();
 	}
 
 	private void Update()
@@ -30,5 +33,10 @@ public class PlayerCharacterController : MonoBehaviour
 		{
 			movement.Stop();
 		}
+
+        if(Input.GetKeyDown(KeyCode.E) && equipment != null && equipment.ItemAvailableForPickup)
+        {
+            equipment.PickItem();
+        }
 	}
 }
