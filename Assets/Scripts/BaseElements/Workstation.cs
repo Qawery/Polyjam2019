@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Assertions;
 using System.Collections.Generic;
 
 
@@ -8,7 +9,14 @@ public abstract class Workstation : MonoBehaviour
 	public abstract int MaxLevel { get; }
 	public abstract WorkstationType Id { get; }
 	public abstract string Name { get; }
+	public abstract Dictionary<Resource, int> NextUpgradeCost { get; }
 
 
-	public abstract List<KeyValuePair<Resource, int>> NextUpgradeCost();
+	protected void Awake()
+	{
+		BaseState baseState;
+		baseState = FindObjectOfType<BaseState>();
+		Assert.IsNotNull(baseState, "Missing baseState");
+		baseState.RegisterWorkstation(this);
+	}
 }

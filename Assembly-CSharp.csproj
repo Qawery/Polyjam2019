@@ -60,10 +60,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\BaseElements\Action\Action.cs" />
+    <Compile Include="Assets\Scripts\BaseElements\Action\BuildAltar.cs" />
     <Compile Include="Assets\Scripts\BaseElements\Altar.cs" />
     <Compile Include="Assets\Scripts\BaseElements\BaseState.cs" />
-    <Compile Include="Assets\Scripts\BaseElements\BaseUI\ResourcesPanel.cs" />
     <Compile Include="Assets\Scripts\BaseElements\Resource.cs" />
+    <Compile Include="Assets\Scripts\BaseElements\UI\ActionButtonsManager.cs" />
+    <Compile Include="Assets\Scripts\BaseElements\UI\CurrentActionSelected.cs" />
+    <Compile Include="Assets\Scripts\BaseElements\UI\DebugResourceButton.cs" />
+    <Compile Include="Assets\Scripts\BaseElements\UI\ResourcesPanel.cs" />
+    <Compile Include="Assets\Scripts\BaseElements\UI\SelectActionButton.cs" />
     <Compile Include="Assets\Scripts\BaseElements\Workstation.cs" />
     <Compile Include="Assets\Scripts\BaseElements\WorkstationType.cs" />
     <Compile Include="Assets\Scripts\TimeAndTurns\TurnManagerScript.cs" />
