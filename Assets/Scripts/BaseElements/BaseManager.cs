@@ -5,11 +5,17 @@ using System.Collections.Generic;
 
 public class BaseManager : MonoBehaviour
 {
+	private GameEndConditions gameEndConditions;
+	private FadeOutScreen dayEndAnimation;
 	private Dictionary<Resource, int> resources = new Dictionary<Resource, int>();
 	private Dictionary<WorkstationType, Workstation> workstations = new Dictionary<WorkstationType, Workstation>();
 	public System.Action OnResourcesChange;
 	public System.Action OnActionChange;
+	public System.Action OnPostActionResolve;
+	public System.Action OnNewDayStart;
 	private Action selectedAction = new NoneAction();
+	public int DaysLeft { get; private set; } = 6;
+	public int ThreatLevel { get; private set; } = 0;
 
 
 	public Action SelectedAction 
@@ -41,6 +47,10 @@ public class BaseManager : MonoBehaviour
 
 	private void Awake()
 	{
+		dayEndAnimation = Resources.FindObjectsOfTypeAll<FadeOutScreen>()[0];
+		Assert.IsNotNull(dayEndAnimation, "Missing dayEndAnimation");
+		gameEndConditions = FindObjectOfType<GameEndConditions>();
+		Assert.IsNotNull(gameEndConditions, "Missing gameEndConditions");
 		for (int i = 0; i < (int) Resource.MAX; ++i)
 		{
 			resources.Add((Resource) i, 0);
@@ -79,6 +89,19 @@ public class BaseManager : MonoBehaviour
 			}
 		}
 		return result;
+	}
+
+	public void ChangeValueOfResource(Resource resouces, int value)
+	{
+		if (resources.ContainsKey(resouces))
+		{
+			resources[resouces] += value;
+			if (resources[resouces] < 0)
+			{
+				resources[resouces] = 0;
+			}
+		}
+		OnResourcesChange?.Invoke();
 	}
 
 	public void ChangeValuesOfResources(Dictionary<Resource, int> resoucesChange, bool negateValues = false)
@@ -123,5 +146,39 @@ public class BaseManager : MonoBehaviour
 		{
 			return 0;
 		}
+	}
+
+	public void BeginDayEnd()
+	{
+		dayEndAnimation.gameObject.SetActive(true);
+		dayEndAnimation.StartDarkening();
+		dayEndAnimation.OnDarkeningEnd += BeginActionResolve;
+	}
+
+	private void BeginActionResolve()
+	{
+		dayEndAnimation.OnDarkeningEnd -= BeginActionResolve;
+		Action executedAction = SelectedAction;
+		SelectedAction = new NoneAction();
+		ChangeValuesOfResources(executedAction.ActionCost, true);
+		executedAction.Execute();   //TODO: odpalenie minigry chodzenia, po tym cos powinno odpalać PostActionResolve()
+		PostActionResolve();
+	}
+
+	private void PostActionResolve()
+	{
+		//TODO: Rozważenie wyniku eksploracji
+		ChangeValueOfResource(Resource.Food, -1);
+		dayEndAnimation.OnLighteningEnd += BeginNewDay;
+		OnPostActionResolve?.Invoke();
+	}
+
+	public void BeginNewDay()
+	{
+		--DaysLeft;
+		--ThreatLevel;
+		dayEndAnimation.gameObject.SetActive(false);
+		dayEndAnimation.OnLighteningEnd -= BeginNewDay;
+		OnNewDayStart?.Invoke();
 	}
 }

@@ -8,15 +8,15 @@ public class DebugResourceButton : MonoBehaviour
 {
 	[SerializeField] private Resource resourceType;
 	[SerializeField] private int value = 1;
-	private BaseManager baseState;
+	private BaseManager baseManager;
 	private Text text;
 	private Image image;
 
 
 	private void Awake()
 	{
-		baseState = FindObjectOfType<BaseManager>();
-		Assert.IsNotNull(baseState, "Missing baseState");
+		baseManager = FindObjectOfType<BaseManager>();
+		Assert.IsNotNull(baseManager, "Missing baseManager");
 		text = GetComponentInChildren<Text>();
 		Assert.IsNotNull(text, "Missing text");
 		image = GetComponent<Image>();
@@ -38,6 +38,6 @@ public class DebugResourceButton : MonoBehaviour
 
 	private void OnClicked()
 	{
-		baseState.ChangeValuesOfResources(new Dictionary<Resource, int> { [resourceType] = value });
+		baseManager.ChangeValuesOfResources(new Dictionary<Resource, int> { [resourceType] = value });
 	}
 }
