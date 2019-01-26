@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class BaseManager : MonoBehaviour
 {
-	[SerializeField] private DayEndAnimation dayEndAnimation;
+	private DayEndAnimation dayEndAnimation;
 	private Dictionary<Resource, int> resources = new Dictionary<Resource, int>();
 	private Dictionary<WorkstationType, Workstation> workstations = new Dictionary<WorkstationType, Workstation>();
 	public System.Action OnResourcesChange;
@@ -44,6 +44,7 @@ public class BaseManager : MonoBehaviour
 
 	private void Awake()
 	{
+		dayEndAnimation = Resources.FindObjectsOfTypeAll<DayEndAnimation>()[0];
 		Assert.IsNotNull(dayEndAnimation, "Missing dayEndAnimation");
 		for (int i = 0; i < (int) Resource.MAX; ++i)
 		{
