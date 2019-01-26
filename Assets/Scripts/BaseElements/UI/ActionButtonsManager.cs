@@ -16,6 +16,7 @@ public class ActionButtonsManager : MonoBehaviour
 		baseManager = FindObjectOfType<BaseManager>();
 		Assert.IsNotNull(baseManager, "Missing baseManager");
 		baseManager.OnActionChange += UpdateActions;
+		baseManager.OnPostActionResolve += UpdateActions;
 	}
 
 	private void Start()

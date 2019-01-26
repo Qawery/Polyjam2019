@@ -5,11 +5,13 @@ using System.Collections.Generic;
 
 public class BaseManager : MonoBehaviour
 {
+	private GameEndConditions gameEndConditions;
 	private DayEndAnimation dayEndAnimation;
 	private Dictionary<Resource, int> resources = new Dictionary<Resource, int>();
 	private Dictionary<WorkstationType, Workstation> workstations = new Dictionary<WorkstationType, Workstation>();
 	public System.Action OnResourcesChange;
 	public System.Action OnActionChange;
+	public System.Action OnPostActionResolve;
 	public System.Action OnNewDayStart;
 	private Action selectedAction = new NoneAction();
 	public int DaysLeft { get; private set; } = 6;
@@ -46,6 +48,8 @@ public class BaseManager : MonoBehaviour
 	{
 		dayEndAnimation = Resources.FindObjectsOfTypeAll<DayEndAnimation>()[0];
 		Assert.IsNotNull(dayEndAnimation, "Missing dayEndAnimation");
+		gameEndConditions = FindObjectOfType<GameEndConditions>();
+		Assert.IsNotNull(gameEndConditions, "Missing gameEndConditions");
 		for (int i = 0; i < (int) Resource.MAX; ++i)
 		{
 			resources.Add((Resource) i, 0);
@@ -156,8 +160,7 @@ public class BaseManager : MonoBehaviour
 		Action executedAction = SelectedAction;
 		SelectedAction = new NoneAction();
 		ChangeValuesOfResources(executedAction.ActionCost, true);
-		executedAction.Execute();   //TODO: odpalenie minigry chodzenia
-		//QUICK_FIX
+		executedAction.Execute();   //TODO: odpalenie minigry chodzenia, po tym cos powinno odpalać PostActionResolve()
 		PostActionResolve();
 	}
 
@@ -166,9 +169,8 @@ public class BaseManager : MonoBehaviour
 		//TODO: Rozważenie wyniku eksploracji
 		--DaysLeft;
 		ChangeValueOfResource(Resource.FOOD, -1);
-		//TODO: Warunki zwycięstwa
-		dayEndAnimation.StartLightening();
 		dayEndAnimation.OnLighteningEnd += BeginNewDay;
+		OnPostActionResolve?.Invoke();
 	}
 
 	public void BeginNewDay()
