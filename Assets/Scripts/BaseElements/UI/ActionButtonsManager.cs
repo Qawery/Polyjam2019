@@ -6,16 +6,16 @@ using System.Collections.Generic;
 public class ActionButtonsManager : MonoBehaviour
 {
 	[SerializeField] private SelectActionButton selectActionButtonPrefab;
-	private BaseManager baseState;
+	private BaseManager baseManager;
 	private List<SelectActionButton> spawnedButtons = new List<SelectActionButton>();
 
 
 	private void Awake()
 	{
 		Assert.IsNotNull(selectActionButtonPrefab);
-		baseState = FindObjectOfType<BaseManager>();
-		Assert.IsNotNull(baseState, "Missing baseState");
-		baseState.OnActionChange += UpdateActions;
+		baseManager = FindObjectOfType<BaseManager>();
+		Assert.IsNotNull(baseManager, "Missing baseManager");
+		baseManager.OnActionChange += UpdateActions;
 	}
 
 	private void Start()
@@ -25,7 +25,7 @@ public class ActionButtonsManager : MonoBehaviour
 
 	private void UpdateActions()
 	{
-		List<Action> availableActions = baseState.GetAvailableAction();
+		List<Action> availableActions = baseManager.GetAvailableAction();
 		while (spawnedButtons.Count > availableActions.Count)
 		{
 			spawnedButtons.RemoveAt(spawnedButtons.Count - 1);

@@ -9,7 +9,10 @@ public class BaseManager : MonoBehaviour
 	private Dictionary<WorkstationType, Workstation> workstations = new Dictionary<WorkstationType, Workstation>();
 	public System.Action OnResourcesChange;
 	public System.Action OnActionChange;
+	public System.Action OnDayEnd;
+	public System.Action OnDayStart;
 	private Action selectedAction = new NoneAction();
+	public int DaysLeft { get; private set; } = 6;
 
 
 	public Action SelectedAction 
@@ -81,6 +84,19 @@ public class BaseManager : MonoBehaviour
 		return result;
 	}
 
+	public void ChangeValueOfResource(Resource resouces, int value)
+	{
+		if (resources.ContainsKey(resouces))
+		{
+			resources[resouces] += value;
+			if (resources[resouces] < 0)
+			{
+				resources[resouces] = 0;
+			}
+		}
+		OnResourcesChange?.Invoke();
+	}
+
 	public void ChangeValuesOfResources(Dictionary<Resource, int> resoucesChange, bool negateValues = false)
 	{
 		foreach (var resourceChangeEntry in resoucesChange)
@@ -123,5 +139,21 @@ public class BaseManager : MonoBehaviour
 		{
 			return 0;
 		}
+	}
+
+	public void EndDay()
+	{
+		Action executedAction = SelectedAction;
+		SelectedAction = new NoneAction();
+		ChangeValuesOfResources(executedAction.ActionCost, true);
+		DaysLeft -= 1;
+		OnDayEnd?.Invoke();
+		//FIXME
+		StartDay();
+	}
+
+	public void StartDay()
+	{
+		OnDayStart?.Invoke();
 	}
 }

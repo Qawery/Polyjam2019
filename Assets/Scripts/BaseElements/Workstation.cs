@@ -19,4 +19,12 @@ public abstract class Workstation : MonoBehaviour
 		Assert.IsNotNull(baseState, "Missing baseState");
 		baseState.RegisterWorkstation(this);
 	}
+
+	public void UpgradeWorkstation()
+	{
+		if (CurrentLevel < MaxLevel)
+		{
+			++CurrentLevel;
+		}
+	}
 }
