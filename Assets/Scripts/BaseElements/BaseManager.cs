@@ -5,12 +5,12 @@ using System.Collections.Generic;
 
 public class BaseManager : MonoBehaviour
 {
+	[SerializeField] private DayEndAnimation dayEndAnimation;
 	private Dictionary<Resource, int> resources = new Dictionary<Resource, int>();
 	private Dictionary<WorkstationType, Workstation> workstations = new Dictionary<WorkstationType, Workstation>();
 	public System.Action OnResourcesChange;
 	public System.Action OnActionChange;
-	public System.Action OnDayEnd;
-	public System.Action OnDayStart;
+	public System.Action OnNewDayStart;
 	private Action selectedAction = new NoneAction();
 	public int DaysLeft { get; private set; } = 6;
 
@@ -44,6 +44,7 @@ public class BaseManager : MonoBehaviour
 
 	private void Awake()
 	{
+		Assert.IsNotNull(dayEndAnimation, "Missing dayEndAnimation");
 		for (int i = 0; i < (int) Resource.MAX; ++i)
 		{
 			resources.Add((Resource) i, 0);
@@ -141,19 +142,38 @@ public class BaseManager : MonoBehaviour
 		}
 	}
 
-	public void EndDay()
+	public void BeginDayEnd()
 	{
+		dayEndAnimation.gameObject.SetActive(true);
+		dayEndAnimation.StartDarkening();
+		dayEndAnimation.OnDarkeningEnd += BeginActionResolve;
+	}
+
+	private void BeginActionResolve()
+	{
+		dayEndAnimation.OnDarkeningEnd -= BeginActionResolve;
 		Action executedAction = SelectedAction;
 		SelectedAction = new NoneAction();
 		ChangeValuesOfResources(executedAction.ActionCost, true);
-		DaysLeft -= 1;
-		OnDayEnd?.Invoke();
-		//FIXME
-		StartDay();
+		executedAction.Execute();   //TODO: odpalenie minigry chodzenia
+		//QUICK_FIX
+		PostActionResolve();
 	}
 
-	public void StartDay()
+	private void PostActionResolve()
 	{
-		OnDayStart?.Invoke();
+		//TODO: Rozważenie wyniku eksploracji
+		--DaysLeft;
+		ChangeValueOfResource(Resource.FOOD, -1);
+		//TODO: Warunki zwycięstwa
+		dayEndAnimation.StartLightening();
+		dayEndAnimation.OnLighteningEnd += BeginNewDay;
+	}
+
+	public void BeginNewDay()
+	{
+		dayEndAnimation.gameObject.SetActive(false);
+		dayEndAnimation.OnLighteningEnd -= BeginNewDay;
+		OnNewDayStart?.Invoke();
 	}
 }

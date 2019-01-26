@@ -5,54 +5,62 @@ using UnityEngine.Assertions;
 
 public class DayEndAnimation : MonoBehaviour
 {
+	private enum FadeOutCycle
+	{
+		DARKENING, DARK, LIGHTENING, LIGHT
+	}
+
 	private const float FADE_OUT_SPEED = 1.0f;
-	private bool isDarkening = true;
-	private BaseManager baseManager;
+	private FadeOutCycle fadeOutCycle = FadeOutCycle.LIGHT;
 	private Image image;
+	public System.Action OnLighteningEnd;
+	public System.Action OnDarkeningEnd;
 
 
 	private void Awake()
 	{
 		image = GetComponent<Image>();
 		Assert.IsNotNull(image, "Missing image");
-		baseManager = FindObjectOfType<BaseManager>();
-		Assert.IsNotNull(baseManager, "Missing baseManager");
-		baseManager
 	}
 
 	private void Update()
 	{
 		Color newColor = image.color;
-		if (isDarkening)
+		if (fadeOutCycle == FadeOutCycle.DARKENING)
 		{
 			newColor.a += FADE_OUT_SPEED * Time.deltaTime;
 			image.color = newColor;
 			if (newColor.a >= 1.0f)
 			{
-				isDarkening = false;
+				fadeOutCycle = FadeOutCycle.DARK;
+				OnDarkeningEnd?.Invoke();
 			}
 		}
-		else
+		else if (fadeOutCycle == FadeOutCycle.LIGHTENING) 
 		{
 			newColor.a -= FADE_OUT_SPEED * Time.deltaTime;
 			image.color = newColor;
 			if (newColor.a <= 0.0f)
 			{
-				gameObject.SetActive(false);
+				fadeOutCycle = FadeOutCycle.LIGHT;
+				OnLighteningEnd?.Invoke();
 			}
 		}
 	}
 
-	private void StartFadeOut()
+	public void StartDarkening()
 	{
-		Color newColor = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+		Color newColor = image.color;
+		newColor.a = 0.0f;
 		image.color = newColor;
-		isDarkening = true;
-		gameObject.SetActive(true);
+		fadeOutCycle = FadeOutCycle.DARKENING;
 	}
 
-	private void EndFadeOut()
+	public void StartLightening()
 	{
-		gameObject.SetActive(false);
+		Color newColor = image.color;
+		newColor.a = 1.0f;
+		image.color = newColor;
+		fadeOutCycle = FadeOutCycle.LIGHTENING;
 	}
 }

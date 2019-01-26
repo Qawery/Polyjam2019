@@ -14,7 +14,7 @@ public class StatsPanel : MonoBehaviour
 		baseManager = FindObjectOfType<BaseManager>();
 		Assert.IsNotNull(baseManager, "Missing baseManager");
 		baseManager.OnResourcesChange += UpdateState;
-		baseManager.OnDayStart += UpdateState;
+		baseManager.OnNewDayStart += UpdateState;
 		text = GetComponent<Text>();
 		Assert.IsNotNull(text, "Missing text");
 		UpdateState();

@@ -19,6 +19,6 @@ public class EndDayButton : MonoBehaviour
 
 	private void OnClicked()
 	{
-		baseManager.EndDay();
+		baseManager.BeginDayEnd();
 	}
 }
