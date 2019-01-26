@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class BaseManager : MonoBehaviour
 {
 	private GameEndConditions gameEndConditions;
-	private DayEndAnimation dayEndAnimation;
+	private FadeOutScreen dayEndAnimation;
 	private Dictionary<Resource, int> resources = new Dictionary<Resource, int>();
 	private Dictionary<WorkstationType, Workstation> workstations = new Dictionary<WorkstationType, Workstation>();
 	public System.Action OnResourcesChange;
@@ -15,6 +15,7 @@ public class BaseManager : MonoBehaviour
 	public System.Action OnNewDayStart;
 	private Action selectedAction = new NoneAction();
 	public int DaysLeft { get; private set; } = 6;
+	public int ThreatLevel { get; private set; } = 0;
 
 
 	public Action SelectedAction 
@@ -46,7 +47,7 @@ public class BaseManager : MonoBehaviour
 
 	private void Awake()
 	{
-		dayEndAnimation = Resources.FindObjectsOfTypeAll<DayEndAnimation>()[0];
+		dayEndAnimation = Resources.FindObjectsOfTypeAll<FadeOutScreen>()[0];
 		Assert.IsNotNull(dayEndAnimation, "Missing dayEndAnimation");
 		gameEndConditions = FindObjectOfType<GameEndConditions>();
 		Assert.IsNotNull(gameEndConditions, "Missing gameEndConditions");
@@ -167,14 +168,15 @@ public class BaseManager : MonoBehaviour
 	private void PostActionResolve()
 	{
 		//TODO: Rozważenie wyniku eksploracji
-		--DaysLeft;
-		ChangeValueOfResource(Resource.FOOD, -1);
+		ChangeValueOfResource(Resource.Food, -1);
 		dayEndAnimation.OnLighteningEnd += BeginNewDay;
 		OnPostActionResolve?.Invoke();
 	}
 
 	public void BeginNewDay()
 	{
+		--DaysLeft;
+		--ThreatLevel;
 		dayEndAnimation.gameObject.SetActive(false);
 		dayEndAnimation.OnLighteningEnd -= BeginNewDay;
 		OnNewDayStart?.Invoke();

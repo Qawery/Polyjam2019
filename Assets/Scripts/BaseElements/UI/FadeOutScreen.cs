@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.Assertions;
 
 
-public class DayEndAnimation : MonoBehaviour
+public class FadeOutScreen : MonoBehaviour
 {
 	private enum FadeOutCycle
 	{
