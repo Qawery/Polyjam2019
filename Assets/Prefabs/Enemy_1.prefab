@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6527246817888544300}
   - component: {fileID: 3186366977233613461}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 2322967742871240569}
   - component: {fileID: 2854729926959912451}
   - component: {fileID: 8677058154150122743}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,3 +213,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91d8d9f3cc7ebe547a196d35968e339d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 512
+  shotRange: 10
+  shotDamage: 30
+  meleeRange: 0.5
+  meleeDamage: 100
+  attackCooldown: 1

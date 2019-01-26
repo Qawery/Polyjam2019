@@ -32,7 +32,7 @@ public class CombatComponent : MonoBehaviour
 		}
 	}
 
-	public void PerformAttack(float distance, int damage)
+	private void PerformAttack(float distance, int damage)
 	{
 		var hit = Physics2D.Raycast(transform.position, transform.up, distance, enemyLayers);
 		if (hit.collider != null)

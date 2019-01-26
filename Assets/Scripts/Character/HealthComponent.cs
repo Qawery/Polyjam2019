@@ -13,9 +13,11 @@ public class HealthComponent : MonoBehaviour
 		{
 			currentValue = value;
 			OnValueChanged?.Invoke(currentValue);
-			if (currentValue == 0)
+			if (currentValue <= 0)
 			{
 				OnDeath?.Invoke();
+				Debug.Log(name + " died");
+				Destroy(gameObject); //TODO: remove this after implementing proper death logic
 			}
 		}
 	}
@@ -31,6 +33,7 @@ public class HealthComponent : MonoBehaviour
 
 	public void ReceiveDamage(int damage)
 	{
+		Debug.Log(name + " received " + damage + " damage.");
 		CurrentValue -= damage;
 		OnDamageReceived?.Invoke(damage);
 	}

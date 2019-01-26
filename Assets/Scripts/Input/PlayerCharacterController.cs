@@ -7,12 +7,16 @@ public class PlayerCharacterController : MonoBehaviour
 {
 	[SerializeField] private float minDistanceToCursor = 0.1f;
 	[SerializeField] private float maxDistanceToCursor = 2f;
-	[SerializeField] private float distanceFalloffExponent = 1.0f;	
+	[SerializeField] private float distanceFalloffExponent = 1.0f;
+	[SerializeField] private KeyCode shotKey;
+	[SerializeField] private KeyCode meleeAttackKey;
 	private CharacterMovement movement;
+	private CombatComponent combat;
 	
 	private void Awake()
 	{
 		movement = GetComponent<CharacterMovement>();
+		combat = GetComponent<CombatComponent>();
 		distanceFalloffExponent = Mathf.Max(0, distanceFalloffExponent);
 	}
 
@@ -29,6 +33,15 @@ public class PlayerCharacterController : MonoBehaviour
 		else
 		{
 			movement.Stop();
+		}
+
+		if (Input.GetKey(shotKey))
+		{
+			combat.Shoot();
+		}
+		else if(Input.GetKey(meleeAttackKey))
+		{
+			combat.PerformMeleeAttack();
 		}
 	}
 }
