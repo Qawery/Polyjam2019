@@ -3,4 +3,7 @@ Temp
 .idea
 Logs
 obj
-.vs
+Polyjam2019.sln
+*.csproj
+*.sln
+.vs/
