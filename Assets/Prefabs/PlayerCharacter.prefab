@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 4218265596421624159}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.060130242, y: 0.060130242, z: 0.060130242}
+  m_LocalScale: {x: 0.32119802, y: 0.32119802, z: 0.53533}
   m_Children: []
   m_Father: {fileID: 4507089318037479746}
   m_RootOrder: 0
@@ -66,7 +66,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1006420351
-  m_SortingLayer: -1
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 75d3796a45ed972418562a3fac9ee039, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -133,7 +133,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.5
 --- !u!50 &2882263597305031804
 Rigidbody2D:
   serializedVersion: 4
@@ -187,8 +187,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeedDegrees: 360
-  velocityChangeSpeed: 2
-  maxSpeed: 0.6
+  velocityChangeSpeed: 10
+  maxSpeed: 4
   maxRotDifToStartMovement: 10
 --- !u!114 &491381009412043974
 MonoBehaviour:
@@ -203,7 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minDistanceToCursor: 0.1
-  maxDistanceToCursor: 2
+  maxDistanceToCursor: 4
   distanceFalloffExponent: 0.5
   shotKey: 113
   meleeAttackKey: 101
@@ -223,10 +223,8 @@ MonoBehaviour:
   minAnimationSpeed: 0
   maxAnimationSpeed: 1.4
   walkSpeedKey: speed
-  meleeModeKey: isMelee
   meleeAttackTriggerKey: meleeTrigger
   gunAttackTriggerKey: gunTrigger
-  debugMode: 0
 --- !u!114 &6576028570434918951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,8 +253,8 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 1024
-  shotRange: 10
+  shotRange: 100
   shotDamage: 30
-  meleeRange: 0.2
+  meleeRange: 0.8
   meleeDamage: 100
   attackCooldown: 1

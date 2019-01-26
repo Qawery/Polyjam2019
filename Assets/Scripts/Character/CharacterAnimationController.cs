@@ -10,29 +10,16 @@ public class CharacterAnimationController : MonoBehaviour
 	[SerializeField] private float maxAnimationSpeed = 2.0f;
 	
 	[SerializeField] private string walkSpeedKey = "speed";
-	[SerializeField] private string meleeModeKey = "isMelee";
+	//[SerializeField] private string meleeModeKey = "isMelee";
 	[SerializeField] private string meleeAttackTriggerKey = "meleeTrigger";
 	[SerializeField] private string gunAttackTriggerKey = "gunTrigger";
 	
-	
-	//DEBUG
-	enum DebugMode
-	{
-		None,
-		Walking,
-		Shooting,
-		MeleeAttack
-	}
-
-	[SerializeField] private DebugMode debugMode;
-	private float timer = 0;
-	//END_DEBUG
 	
 	private new Rigidbody2D rigidbody2D = null;
 	private Animator animator = null;
 	
 	private int walkSpeedHash;
-	private int meleeModeHash;
+	//private int meleeModeHash;
 	private int meleeAttackTriggerHash;
 	private int gunAttackTriggerHash;
 
@@ -41,7 +28,7 @@ public class CharacterAnimationController : MonoBehaviour
 		rigidbody2D = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
 		walkSpeedHash = Animator.StringToHash(walkSpeedKey);
-		meleeModeHash = Animator.StringToHash(meleeModeKey);
+		//meleeModeHash = Animator.StringToHash(meleeModeKey);
 		meleeAttackTriggerHash = Animator.StringToHash(meleeAttackTriggerKey);
 		gunAttackTriggerHash = Animator.StringToHash(gunAttackTriggerKey);
 		

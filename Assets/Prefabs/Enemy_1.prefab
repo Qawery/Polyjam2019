@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 6485886055538857229}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.060130242, y: 0.060130242, z: 0.060130242}
+  m_LocalScale: {x: 0.37755603, y: 0.37755603, z: 0.31463}
   m_Children: []
   m_Father: {fileID: 6866978063888960042}
   m_RootOrder: 0
@@ -66,7 +66,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1006420351
-  m_SortingLayer: -1
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a2e92708e8467ba468b88121adb394aa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -91,7 +91,6 @@ GameObject:
   - component: {fileID: 5466369207657242084}
   - component: {fileID: 3294993114749199424}
   - component: {fileID: 1513623936391979914}
-  - component: {fileID: 2322967742871240569}
   - component: {fileID: 2854729926959912451}
   - component: {fileID: 8677058154150122743}
   m_Layer: 10
@@ -131,7 +130,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.7
 --- !u!50 &3294993114749199424
 Rigidbody2D:
   serializedVersion: 4
@@ -144,7 +143,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -172,22 +171,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2322967742871240569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8369293408485537826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09db0d0ea0cc86e4ea918fec26a4e5e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeedDegrees: 360
-  velocityChangeSpeed: 2
-  maxSpeed: 0.6
-  maxRotDifToStartMovement: 10
 --- !u!114 &2854729926959912451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,6 +201,6 @@ MonoBehaviour:
     m_Bits: 512
   shotRange: 10
   shotDamage: 30
-  meleeRange: 0.5
+  meleeRange: 1
   meleeDamage: 100
   attackCooldown: 1
