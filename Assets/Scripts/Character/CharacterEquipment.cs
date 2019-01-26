@@ -23,13 +23,26 @@ namespace Polyjam2019
         private bool limitWeight;
 
         [SerializeField]
-        private bool limitSize;
+        private bool limitSize;        
 
         private void Awake()
         {
             itemsInEquipment = new Dictionary<int, PickableData>();
             totalSize = 0;
             totalWeight = 0;
+        }
+
+        private void Update()
+        {
+            
+        }
+
+        public void PickItem()
+        {
+            if(CurrentlyAvailableItem != null)
+            {
+                CurrentlyAvailableItem.StartPickingUp(this);
+            }
         }
 
         public bool CanFitTheItem(PickableData itemData)
@@ -80,6 +93,22 @@ namespace Polyjam2019
         }
 
         [HideInInspector]
-        public bool ItemAvailableForPickup = false;
+        private bool itemAvailableForPickup = false;
+
+        public bool ItemAvailableForPickup
+        {
+            get
+            {
+                return itemAvailableForPickup;
+            }
+            set
+            {
+                itemAvailableForPickup = value;
+                Debug.Log("Item available: " + itemAvailableForPickup);
+            }
+        }
+
+        [HideInInspector]
+        public BasePickableScript CurrentlyAvailableItem = null;
     }
 }

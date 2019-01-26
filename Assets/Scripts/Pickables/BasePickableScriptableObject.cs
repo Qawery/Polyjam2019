@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace Polyjam2019.Pickables
 {    
-    public abstract class BasePickableScriptableObject : ScriptableObject
+    [CreateAssetMenu(fileName = "Pickable Item", menuName ="Base Pickable Object")]
+    public class BasePickableScriptableObject : ScriptableObject
     {
         [SerializeField]
         protected float weight;
