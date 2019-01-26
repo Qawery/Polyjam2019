@@ -5,13 +5,13 @@ using UnityEngine.Assertions;
 
 public class ResourcesPanel : MonoBehaviour
 {
-	private BaseState baseState;
+	private BaseManager baseState;
 	private Text text;
 
 
 	private void Awake()
 	{
-		baseState = FindObjectOfType<BaseState>();
+		baseState = FindObjectOfType<BaseManager>();
 		Assert.IsNotNull(baseState, "Missing baseState");
 		baseState.OnResourcesChange += UpdateResources;
 		text = GetComponent<Text>();

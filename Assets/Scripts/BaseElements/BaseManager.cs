@@ -3,13 +3,13 @@ using UnityEngine.Assertions;
 using System.Collections.Generic;
 
 
-public class BaseState : MonoBehaviour
+public class BaseManager : MonoBehaviour
 {
 	private Dictionary<Resource, int> resources = new Dictionary<Resource, int>();
 	private Dictionary<WorkstationType, Workstation> workstations = new Dictionary<WorkstationType, Workstation>();
 	public System.Action OnResourcesChange;
 	public System.Action OnActionChange;
-	private Action selectedAction = null;
+	private Action selectedAction = new NoneAction();
 
 
 	public Action SelectedAction 
@@ -32,7 +32,7 @@ public class BaseState : MonoBehaviour
 			}
 			else
 			{
-				selectedAction = null;
+				selectedAction = new NoneAction();
 			}
 			OnActionChange?.Invoke();
 		}
@@ -65,6 +65,20 @@ public class BaseState : MonoBehaviour
 		{
 			return null;
 		}
+	}
+
+	public List<Action> GetAvailableAction()
+	{
+		List<Action> result = new List<Action>();
+		result.Add(new NoneAction());
+		foreach (var workstation in workstations.Values)
+		{
+			if (workstation.CurrentLevel < workstation.MaxLevel)
+			{
+				result.Add(new UpgradeWorkstation(workstation));
+			}
+		}
+		return result;
 	}
 
 	public void ChangeValuesOfResources(Dictionary<Resource, int> resoucesChange, bool negateValues = false)

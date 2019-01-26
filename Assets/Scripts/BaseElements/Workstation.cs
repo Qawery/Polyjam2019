@@ -14,8 +14,8 @@ public abstract class Workstation : MonoBehaviour
 
 	protected void Awake()
 	{
-		BaseState baseState;
-		baseState = FindObjectOfType<BaseState>();
+		BaseManager baseState;
+		baseState = FindObjectOfType<BaseManager>();
 		Assert.IsNotNull(baseState, "Missing baseState");
 		baseState.RegisterWorkstation(this);
 	}

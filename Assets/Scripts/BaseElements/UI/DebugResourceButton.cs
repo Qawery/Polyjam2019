@@ -8,14 +8,14 @@ public class DebugResourceButton : MonoBehaviour
 {
 	[SerializeField] private Resource resourceType;
 	[SerializeField] private int value = 1;
-	private BaseState baseState;
+	private BaseManager baseState;
 	private Text text;
 	private Image image;
 
 
 	private void Awake()
 	{
-		baseState = FindObjectOfType<BaseState>();
+		baseState = FindObjectOfType<BaseManager>();
 		Assert.IsNotNull(baseState, "Missing baseState");
 		text = GetComponentInChildren<Text>();
 		Assert.IsNotNull(text, "Missing text");

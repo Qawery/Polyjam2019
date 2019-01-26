@@ -61,9 +61,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\BaseElements\Action\Action.cs" />
-    <Compile Include="Assets\Scripts\BaseElements\Action\BuildAltar.cs" />
+    <Compile Include="Assets\Scripts\BaseElements\Action\NoneAction.cs" />
+    <Compile Include="Assets\Scripts\BaseElements\Action\UpgradeWorkstation.cs" />
     <Compile Include="Assets\Scripts\BaseElements\Altar.cs" />
-    <Compile Include="Assets\Scripts\BaseElements\BaseState.cs" />
+    <Compile Include="Assets\Scripts\BaseElements\BaseManager.cs" />
     <Compile Include="Assets\Scripts\BaseElements\Resource.cs" />
     <Compile Include="Assets\Scripts\BaseElements\UI\ActionButtonsManager.cs" />
     <Compile Include="Assets\Scripts\BaseElements\UI\CurrentActionSelected.cs" />
