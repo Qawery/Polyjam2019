@@ -212,8 +212,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09db0d0ea0cc86e4ea918fec26a4e5e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationSpeedDegrees: 360
   velocityChangeSpeed: 2
   maxSpeed: 1
+  maxRotDifToStartMovement: 10
 --- !u!114 &491381009412043974
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,11 +2,14 @@
 
 public class CharacterMovement : MonoBehaviour
 {
+	[SerializeField] private float rotationSpeedDegrees = 360.0f;
 	[SerializeField] private float velocityChangeSpeed = 1.0f; //TODO: add Range attribute
 	[SerializeField] private float maxSpeed = 2.0f;
+
+	[SerializeField] private float maxRotDifToStartMovement = 5.0f;
 	
 	private new Rigidbody2D rigidbody2D;
-	private Vector2 targetVelocity;
+	public Vector2 TargetVelocity { get; private set; }
 	
 	/// <summary>
 	/// Sets target direction and speed.
@@ -16,7 +19,7 @@ public class CharacterMovement : MonoBehaviour
 	public void Move(Vector2 direction, float speedPercentage)
 	{
 		speedPercentage = Mathf.Clamp01(speedPercentage);
-		targetVelocity = direction.normalized * speedPercentage * maxSpeed;
+		TargetVelocity = direction.normalized * speedPercentage * maxSpeed;
 	}
 	
 	/// <summary>
@@ -24,7 +27,7 @@ public class CharacterMovement : MonoBehaviour
 	/// </summary>
 	public void Stop()
 	{
-		targetVelocity = Vector2.zero;
+		TargetVelocity = Vector2.zero;
 	}
 
 	/// <summary>
@@ -32,7 +35,7 @@ public class CharacterMovement : MonoBehaviour
 	/// </summary>
 	public void StopImmediate()
 	{
-		targetVelocity = rigidbody2D.velocity = Vector2.zero;
+		TargetVelocity = rigidbody2D.velocity = Vector2.zero;
 	}
 	
 	private void Awake()
@@ -40,14 +43,22 @@ public class CharacterMovement : MonoBehaviour
 		rigidbody2D = GetComponent<Rigidbody2D>();
 	}
 
-	private const float minSpeedToRotate = 0.001f;
+	private const float minSpeedToMove = 0.01f;
 	private void FixedUpdate()
 	{
-		rigidbody2D.velocity = Vector2.MoveTowards(rigidbody2D.velocity, targetVelocity, velocityChangeSpeed * Time.fixedDeltaTime);
-		if (rigidbody2D.velocity.magnitude > minSpeedToRotate)
+		rigidbody2D.angularVelocity = 0;
+		
+		Vector2 movementDir = TargetVelocity.normalized;
+		float targetAngle = Mathf.Atan2(movementDir.y, movementDir.x) * Mathf.Rad2Deg - 90;
+		var targetRot = Quaternion.Euler(0, 0, targetAngle);
+		
+		if (TargetVelocity.magnitude > minSpeedToMove)
 		{
-			Vector2 movementDir = rigidbody2D.velocity.normalized;
-			rigidbody2D.rotation = Mathf.Atan2(movementDir.y, movementDir.x) * Mathf.Rad2Deg - 90;
+			transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, rotationSpeedDegrees * Time.fixedDeltaTime);
 		}
+		
+		Vector2 finalVelocity = Quaternion.Angle(targetRot, transform.rotation) < maxRotDifToStartMovement ? TargetVelocity : Vector2.zero;
+		rigidbody2D.velocity = Vector2.MoveTowards(rigidbody2D.velocity, finalVelocity, velocityChangeSpeed * Time.fixedDeltaTime);
 	}
 }
+
