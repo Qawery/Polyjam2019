@@ -11,6 +11,8 @@ public class CombatComponent : MonoBehaviour
 
 	private float cooldownRemaining;
 
+	public float MeleeRange => meleeRange;
+
 	public event System.Action OnMeleeAttack;
 	public event System.Action OnShot;
 

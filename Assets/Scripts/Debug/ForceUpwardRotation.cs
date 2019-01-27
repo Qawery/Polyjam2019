@@ -7,8 +7,11 @@ public class ForceUpwardRotation : MonoBehaviour
     
     public void LateUpdate()
     {
-        Vector3 newPosition = target.position - Vector3.forward * 10;
-        transform.position = newPosition;
-        transform.rotation = Quaternion.Euler(Vector3.zero);
+        if (target != null)
+        {
+            Vector3 newPosition = target.position - Vector3.forward * 10;
+            transform.position = newPosition;
+            transform.rotation = Quaternion.Euler(Vector3.zero);
+        }
     }
 }

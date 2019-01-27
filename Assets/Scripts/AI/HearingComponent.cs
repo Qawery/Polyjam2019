@@ -2,7 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HearingComponent : MonoBehaviour
+public class HearingComponent : MonoBehaviour, ISoundReceiver
 {
-
+	public event System.Action<Vector2> OnSoundReceived;
+	public void ReceiveSound(Vector2 position)
+	{
+		Debug.Log("Received sound at " + position);
+		OnSoundReceived?.Invoke(position);
+	}
 }

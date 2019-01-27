@@ -15,12 +15,15 @@ public class AICharacterController : MonoBehaviour
     [SerializeField] private float maxMovementSpeed = 5.0f;
     private StateMachine stateMachine = null;
     
-    public Blackboard SharedBlackboard { get; set; }
+    public VisionCone Vision { get; private set; }
+    public HearingComponent Hearing { get; private set; }
     public PatrolPointData[] PatrolPoints => patrolPoints;
     public float MaxMovementSpeed => maxMovementSpeed;
-
+    
     void Awake()
     {
+        Vision = GetComponent<VisionCone>();
+        Hearing = GetComponent<HearingComponent>();
         stateMachine = new StateMachine(this, new Patrol());
     }
 

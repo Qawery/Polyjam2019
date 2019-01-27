@@ -37,7 +37,6 @@ public class EnemyAnimationController : MonoBehaviour
 	
 	void Update()
 	{
-		Debug.Log(aiMovement.velocity);
 		animator.SetFloat(walkSpeedHash, Mathf.Clamp(aiMovement.velocity.magnitude * animationSpeedMultiplier, minAnimationSpeed, maxAnimationSpeed));
 	}
 }

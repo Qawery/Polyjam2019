@@ -6,6 +6,8 @@ public class Patrol : StateMachineBehavior
 {
 	int currentPatrolPointIndex = 0;
 	private float waitTimer = 0;
+	private bool soundRegistered = false;
+	private Vector2 registeredSoundPosition;
 		
 	public override void Initialize(AICharacterController owner)
 	{
@@ -21,6 +23,13 @@ public class Patrol : StateMachineBehavior
 				currentPatrolPointIndex = pointIndex;
 			}
 		}
+		owner.Hearing.OnSoundReceived += OnSoundReceived;
+	}
+
+	private void OnSoundReceived(Vector2 position)
+	{
+		registeredSoundPosition = position;
+		soundRegistered = true;
 	}
 
 	public override StateMachineBehavior Update(AICharacterController owner, float deltaTime)
@@ -47,8 +56,23 @@ public class Patrol : StateMachineBehavior
 			aiMovement.maxSpeed = 0.25f * owner.MaxMovementSpeed;
 			aiMovement.destination = currentPatrolPoint.Position;
 		}
+
+		if (owner.Vision.SpottedObject)
+		{
+			return new Chase();
+		}
+
+		if (soundRegistered)
+		{
+			return new Alert(registeredSoundPosition);
+		}
 		
-		//TODO: check vision and hearing and transition to alerted or chase state if necessary
 		return this;
+	}
+
+	public override void Finish(AICharacterController owner)
+	{
+		base.Finish(owner);
+		owner.Hearing.OnSoundReceived -= OnSoundReceived;
 	}
 }
