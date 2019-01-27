@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Polyjam2019;
+using UnityEngine;
 
 
 [RequireComponent(typeof(CharacterMovement))]
@@ -11,6 +12,7 @@ public class PlayerCharacterController : MonoBehaviour
 	[SerializeField] private KeyCode shotKey;
 	[SerializeField] private KeyCode meleeAttackKey;
 	private CharacterMovement movement;
+    private CharacterEquipment equipment;
 	private CombatComponent combat;
 	
 	private void Awake()
@@ -18,6 +20,8 @@ public class PlayerCharacterController : MonoBehaviour
 		movement = GetComponent<CharacterMovement>();
 		combat = GetComponent<CombatComponent>();
 		distanceFalloffExponent = Mathf.Max(0, distanceFalloffExponent);
+
+        equipment = GetComponent<CharacterEquipment>();
 	}
 
 	private void Update()
@@ -43,5 +47,9 @@ public class PlayerCharacterController : MonoBehaviour
 		{
 			combat.PerformMeleeAttack();
 		}
-	}
+
+        if(Input.GetKeyDown(KeyCode.E) && equipment != null && equipment.ItemAvailableForPickup)
+        {
+            equipment.PickItem();
+        }	}
 }

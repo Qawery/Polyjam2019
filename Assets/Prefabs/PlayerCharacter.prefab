@@ -288,8 +288,8 @@ MonoBehaviour:
   minDistanceToCursor: 0.1
   maxDistanceToCursor: 4
   distanceFalloffExponent: 0.5
-  shotKey: 113
-  meleeAttackKey: 101
+  shotKey: 97
+  meleeAttackKey: 115
 --- !u!114 &3430681892415836153
 MonoBehaviour:
   m_ObjectHideFlags: 0
