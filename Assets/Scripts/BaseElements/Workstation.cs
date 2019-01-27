@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public abstract class Workstation : MonoBehaviour
 {
-	public int CurrentLevel { get; protected set; } = 0;
+	public int CurrentLevel { get; protected set; } = 1;
 	public abstract int MaxLevel { get; }
 	public abstract WorkstationType Id { get; }
 	public abstract string Name { get; }
@@ -18,5 +18,13 @@ public abstract class Workstation : MonoBehaviour
 		baseState = FindObjectOfType<BaseManager>();
 		Assert.IsNotNull(baseState, "Missing baseState");
 		baseState.RegisterWorkstation(this);
+	}
+
+	public void UpgradeWorkstation()
+	{
+		if (CurrentLevel < MaxLevel)
+		{
+			++CurrentLevel;
+		}
 	}
 }

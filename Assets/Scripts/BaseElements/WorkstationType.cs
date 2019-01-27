@@ -1,4 +1,4 @@
 ﻿public enum WorkstationType
 {
-	ALTAR
+	Workshop, Alchemist_Table, Garden, Altar, MAX
 }

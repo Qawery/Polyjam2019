@@ -23,6 +23,10 @@ public class UpgradeWorkstation : Action
 		}
 	}
 
+	public override void Execute()
+	{
+		workstation.UpgradeWorkstation();
+	}
 
 	public UpgradeWorkstation(Workstation _workstation)
 	{

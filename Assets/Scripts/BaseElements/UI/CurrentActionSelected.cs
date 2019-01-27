@@ -5,15 +5,15 @@ using UnityEngine.Assertions;
 
 public class CurrentActionSelected : MonoBehaviour
 {
-	private BaseManager baseState;
+	private BaseManager baseManager;
 	private Text text;
 
 
 	private void Awake()
 	{
-		baseState = FindObjectOfType<BaseManager>();
-		Assert.IsNotNull(baseState, "Missing baseState");
-		baseState.OnActionChange += UpdateAction;
+		baseManager = FindObjectOfType<BaseManager>();
+		Assert.IsNotNull(baseManager, "Missing baseManager");
+		baseManager.OnActionChange += UpdateAction;
 		text = GetComponent<Text>();
 		Assert.IsNotNull(text, "Missing text");
 		UpdateAction();
@@ -22,7 +22,7 @@ public class CurrentActionSelected : MonoBehaviour
 	private void UpdateAction()
 	{
 		string newText = "Current action:\n";
-		newText += baseState.SelectedAction.Title;
+		newText += baseManager.SelectedAction.Title;
 		text.text = newText;
 	}
 }

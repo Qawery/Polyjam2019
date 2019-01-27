@@ -5,7 +5,7 @@ using UnityEngine.Assertions;
 
 public class SelectActionButton : MonoBehaviour
 {
-	private BaseManager baseState;
+	private BaseManager baseManager;
 	private Image image;
 	private Text text;
 	private Action action;
@@ -13,10 +13,10 @@ public class SelectActionButton : MonoBehaviour
 
 	private void Awake()
 	{
-		baseState = FindObjectOfType<BaseManager>();
-		Assert.IsNotNull(baseState, "Missing baseState");
-		baseState.OnActionChange += UpdateButtonColor;
-		baseState.OnResourcesChange += UpdateButtonColor;
+		baseManager = FindObjectOfType<BaseManager>();
+		Assert.IsNotNull(baseManager, "Missing baseManager");
+		baseManager.OnActionChange += UpdateButtonColor;
+		baseManager.OnResourcesChange += UpdateButtonColor;
 		text = GetComponentInChildren<Text>();
 		Assert.IsNotNull(text, "Missing text");
 		image = GetComponent<Image>();
@@ -53,7 +53,7 @@ public class SelectActionButton : MonoBehaviour
 
 	private void UpdateButtonColor()
 	{
-		if (baseState.HasResources(action.ActionCost))
+		if (baseManager.HasResources(action.ActionCost))
 		{
 			image.color = Color.green;
 		}
@@ -65,6 +65,6 @@ public class SelectActionButton : MonoBehaviour
 
 	private void OnClicked()
 	{
-		baseState.SelectedAction = action;
+		baseManager.SelectedAction = action;
 	}
 }

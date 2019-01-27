@@ -4,7 +4,7 @@
 public class Altar : Workstation
 {
 	public override int MaxLevel { get { return 5; } }
-	public override WorkstationType Id { get { return WorkstationType.ALTAR; } }
+	public override WorkstationType Id { get { return WorkstationType.Altar; } }
 	public override string Name { get { return "Altar"; } }
 	public override Dictionary<Resource, int> NextUpgradeCost 
 	{ 
@@ -15,7 +15,27 @@ public class Altar : Workstation
 				return null;
 			}
 			Dictionary<Resource, int> result = new Dictionary<Resource, int>();
-			result.Add(Resource.FOOD, 2);
+			switch (CurrentLevel)
+			{
+				case 1:
+					result.Add(Resource.Clues, 2);
+				break;
+
+				case 2:
+					result.Add(Resource.Herbs, 1);
+					result.Add(Resource.Clues, 3);
+				break;
+
+				case 3:
+					result.Add(Resource.Herbs, 2);
+					result.Add(Resource.Scrap, 2);
+					result.Add(Resource.Clues, 4);
+				break;
+
+				case 4:
+					result.Add(Resource.Clues, 5);
+				break;
+			}
 			return result;
 		}
 	}
