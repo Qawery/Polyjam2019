@@ -17,6 +17,7 @@ public class BaseManager : MonoBehaviour
 	public int DaysLeft { get; private set; } = 6;
 	public int ThreatLevel { get; private set; } = 0;
 
+
     private static BaseManager instance = null;
     public static BaseManager Instance
     {
@@ -64,7 +65,6 @@ public class BaseManager : MonoBehaviour
 	private void Awake()
 	{
         Instance = this;
-
 		dayEndAnimation = Resources.FindObjectsOfTypeAll<FadeOutScreen>()[0];
 		Assert.IsNotNull(dayEndAnimation, "Missing dayEndAnimation");
 		gameEndConditions = FindObjectOfType<GameEndConditions>();
