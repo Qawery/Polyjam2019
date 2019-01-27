@@ -18,6 +18,10 @@ public class Chase : StateMachineBehavior
 			    0.8f * (combat.MeleeRange + owner.Vision.SpottedObject.GetComponent<CircleCollider2D>().radius))
 			{
 				aiMovement.destination = owner.transform.position;
+				Vector2 direction = lastKnownPosition - owner.transform.position.XY();
+				float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+				var targetRot = Quaternion.Euler(0, 0, targetAngle);
+				owner.transform.rotation = Quaternion.RotateTowards(owner.transform.rotation, targetRot, 360.0f * deltaTime);
 				combat.PerformMeleeAttack();
 			}
 			else
