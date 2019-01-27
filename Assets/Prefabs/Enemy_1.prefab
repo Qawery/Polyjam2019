@@ -278,6 +278,11 @@ MonoBehaviour:
   shotSoundRange: 30
   audioSource: {fileID: 9191010427969213264}
   audioClip: {fileID: 8300000, guid: 6cbe07166b3515a43b8c32c080c21971, type: 3}
+  audioClips:
+  - {fileID: 8300000, guid: 393bfc3563a63394bb2afb638b57eaee, type: 3}
+  - {fileID: 8300000, guid: f472046e9350616448a4c217fa67d492, type: 3}
+  - {fileID: 8300000, guid: 52a35aadc188f9e4580048add60f3b92, type: 3}
+  - {fileID: 8300000, guid: 6cbe07166b3515a43b8c32c080c21971, type: 3}
 --- !u!114 &2323804634484195500
 MonoBehaviour:
   m_ObjectHideFlags: 0

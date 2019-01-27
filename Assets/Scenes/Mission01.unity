@@ -17181,9 +17181,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ef5010c58dda06645945ec4ec8cf722d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b78737fb134309a4fbc484d2e67396db, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.332
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -17279,7 +17279,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: caba11b5ffbea1c468698b29bd37616a, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.422
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -29412,11 +29412,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCharacter
       objectReference: {fileID: 0}
-    - target: {fileID: 4507089318037479748, guid: 2009f8316c974c947b40879b04839d38,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 4507089318037479746, guid: 2009f8316c974c947b40879b04839d38,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -29472,10 +29467,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8769417080322029318, guid: 2009f8316c974c947b40879b04839d38,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.867
+    - target: {fileID: 1982958812, guid: 2009f8316c974c947b40879b04839d38, type: 3}
+      propertyPath: m_Volume
+      value: 0.073
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2009f8316c974c947b40879b04839d38, type: 3}
