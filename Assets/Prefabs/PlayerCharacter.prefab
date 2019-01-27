@@ -66,7 +66,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1006420351
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 078f40e29dbb09844b757250671e01de, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
@@ -225,7 +225,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1006420351
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b9307ea2c22cf0944957fe14aac680f9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -304,7 +304,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1006420351
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 75d3796a45ed972418562a3fac9ee039, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -450,7 +450,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minDistanceToCursor: 0.1
   maxDistanceToCursor: 4
-  distanceFalloffExponent: 0.5
+  distanceFalloffExponent: 0.82
   shotKey: 324
   meleeAttackKey: 324
 --- !u!114 &3430681892415836153
@@ -520,8 +520,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundCircle: {fileID: 73348697540102912}
-  alphaTransitionSpeed: 0.2
-  maxAlpha: 0.1
+  alphaTransitionSpeed: 2
+  maxAlpha: 1
 --- !u!82 &6907444200970618015
 AudioSource:
   m_ObjectHideFlags: 0
@@ -856,7 +856,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1006420351
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: dd2322279c4fea742a6550070f63c6fd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
