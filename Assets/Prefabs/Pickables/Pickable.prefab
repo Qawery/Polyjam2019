@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2868082310133775614}
   - component: {fileID: 5432304942421473957}
   - component: {fileID: 643271144221551453}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Pickable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,7 +83,7 @@ GameObject:
   - component: {fileID: 8118730065547892721}
   - component: {fileID: 2289388419446708747}
   - component: {fileID: 7650282489233029711}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: PickableDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1006420351
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2a1d4832d1416b541853ff966b95c416, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
