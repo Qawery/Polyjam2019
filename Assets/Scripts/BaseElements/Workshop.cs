@@ -3,7 +3,7 @@
 
 public class Workshop : Workstation
 {
-	public override int MaxLevel { get { return 5; } }
+	public override int MaxLevel { get { return 3; } }
 	public override WorkstationType Id { get { return WorkstationType.Workshop; } }
 	public override string Name { get { return "Workshop"; } }
 	public override Dictionary<Resource, int> NextUpgradeCost
@@ -28,11 +28,6 @@ public class Workshop : Workstation
 				case 3:
 					result.Add(Resource.Scrap, 1);
 					result.Add(Resource.Clues, 1);
-					break;
-
-				case 4:
-					result.Add(Resource.Scrap, 2);
-					result.Add(Resource.Clues, 2);
 					break;
 			}
 			return result;

@@ -28,9 +28,20 @@ public class HealthComponent : MonoBehaviour
 			}
 		}
 	}
-	
 
-	public void Reset()
+
+	private void Awake()
+	{
+		if (gameObject.tag == "Player" && BaseState.Instance != null)
+		{
+			int currentLevel = BaseState.Instance.GetWorkstationOfType(WorkstationType.Alchemist_Table).CurrentLevel;
+			int maxLevel = BaseState.Instance.GetWorkstationOfType(WorkstationType.Alchemist_Table).MaxLevel;
+			maxValue += (maxValue * (currentLevel / maxLevel));
+		}
+		RestoreValue();
+	}
+
+	public void RestoreValue()
 	{
 		CurrentValue = maxValue;
 	}
@@ -40,10 +51,5 @@ public class HealthComponent : MonoBehaviour
 		Debug.Log(name + " received " + damage + " damage.");
 		CurrentValue -= damage;
 		OnDamageReceived?.Invoke(damage);
-	}
-
-	private void Awake()
-	{
-		Reset();
 	}
 }

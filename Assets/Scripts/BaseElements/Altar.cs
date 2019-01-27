@@ -3,7 +3,7 @@
 
 public class Altar : Workstation
 {
-	public override int MaxLevel { get { return 5; } }
+	public override int MaxLevel { get { return 3; } }
 	public override WorkstationType Id { get { return WorkstationType.Altar; } }
 	public override string Name { get { return "Altar"; } }
 	public override Dictionary<Resource, int> NextUpgradeCost 
@@ -28,10 +28,6 @@ public class Altar : Workstation
 				case 3:
 					result.Add(Resource.Scrap, 2);
 					result.Add(Resource.Clues, 4);
-				break;
-
-				case 4:
-					result.Add(Resource.Clues, 5);
 				break;
 			}
 			return result;
