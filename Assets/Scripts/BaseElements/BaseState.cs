@@ -13,6 +13,7 @@ public class BaseState : MonoBehaviour
 	public int ThreatLevel { get; set; } = 0;
 	public bool wentToMission = false;
 
+
     private static BaseState instance = null;
     public static BaseState Instance
     {
