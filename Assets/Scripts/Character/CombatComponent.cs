@@ -8,6 +8,7 @@ public class CombatComponent : MonoBehaviour
 	[SerializeField] private float meleeRange = 0.5f;
 	[SerializeField] private int meleeDamage = 100;
 	[SerializeField] private float attackCooldown = 1.0f;
+	[SerializeField] private float shotSoundRange = 30.0f;
 
 	private float cooldownRemaining;
 
@@ -21,6 +22,7 @@ public class CombatComponent : MonoBehaviour
 		if (cooldownRemaining <= 0)
 		{
 			PerformAttack(shotRange, shotDamage);
+			GetComponent<SoundEmitter>().EmitSound(shotSoundRange);
 			OnShot?.Invoke();
 		}
 	}

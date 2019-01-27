@@ -17,6 +17,7 @@ public class Chase : StateMachineBehavior
 			if (Vector3.Distance(lastKnownPosition, owner.transform.position) <
 			    0.8f * (combat.MeleeRange + owner.Vision.SpottedObject.GetComponent<CircleCollider2D>().radius))
 			{
+				aiMovement.destination = owner.transform.position;
 				combat.PerformMeleeAttack();
 			}
 			else
