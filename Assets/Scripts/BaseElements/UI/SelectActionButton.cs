@@ -5,7 +5,6 @@ using UnityEngine.Assertions;
 
 public class SelectActionButton : MonoBehaviour
 {
-	private BaseManager baseManager;
 	private Image image;
 	private Text text;
 	private Action action;
@@ -13,10 +12,6 @@ public class SelectActionButton : MonoBehaviour
 
 	private void Awake()
 	{
-		baseManager = FindObjectOfType<BaseManager>();
-		Assert.IsNotNull(baseManager, "Missing baseManager");
-		baseManager.OnActionChange += UpdateButtonColor;
-		baseManager.OnResourcesChange += UpdateButtonColor;
 		text = GetComponentInChildren<Text>();
 		Assert.IsNotNull(text, "Missing text");
 		image = GetComponent<Image>();
@@ -25,6 +20,12 @@ public class SelectActionButton : MonoBehaviour
 		Assert.IsNotNull(button, "Missing button");
 		button.onClick.AddListener(OnClicked);
 		gameObject.SetActive(false);
+		BaseControlFlowManager.OnResourceChange += UpdateButtonColor;
+	}
+
+	private void OnDestroy()
+	{
+		BaseControlFlowManager.OnResourceChange -= UpdateButtonColor;
 	}
 
 	public void SetAction(Action newAction)
@@ -46,14 +47,14 @@ public class SelectActionButton : MonoBehaviour
 				}
 			}
 			text.text = newText;
-			UpdateButtonColor();
 			gameObject.SetActive(true);
+			UpdateButtonColor();
 		}
 	}
 
 	private void UpdateButtonColor()
 	{
-		if (baseManager.HasResources(action.ActionCost))
+		if (BaseState.Instance.HasResources(action.ActionCost))
 		{
 			image.color = Color.green;
 		}
@@ -65,6 +66,6 @@ public class SelectActionButton : MonoBehaviour
 
 	private void OnClicked()
 	{
-		baseManager.SelectedAction = action;
+		BaseState.Instance.SelectedAction = action;
 	}
 }

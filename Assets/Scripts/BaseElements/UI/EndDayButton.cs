@@ -5,13 +5,8 @@ using UnityEngine.Assertions;
 
 public class EndDayButton : MonoBehaviour
 {
-	private BaseManager baseManager;
-
-
-	private void Awake()
+	private void Start()
 	{
-		baseManager = FindObjectOfType<BaseManager>();
-		Assert.IsNotNull(baseManager, "Missing baseManager");
 		Button button = GetComponent<Button>();
 		Assert.IsNotNull(button, "Missing button");
 		button.onClick.AddListener(OnClicked);
@@ -19,6 +14,6 @@ public class EndDayButton : MonoBehaviour
 
 	private void OnClicked()
 	{
-		baseManager.BeginDayEnd();
+		FindObjectOfType< BaseControlFlowManager>().BeginDayEnd();
 	}
 }
