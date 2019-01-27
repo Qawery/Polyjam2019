@@ -15,13 +15,17 @@ namespace Polyjam2019.Pickables
 
         [SerializeField]
         protected float basePickupTime;
+		
+		[SerializeField][Range(1, 5)]
+		protected int amount = 1;
 
-        [SerializeField]
+		[SerializeField]
         protected Resource resource;
 
         public float Weight { get { return weight; } }
         public float Size { get { return size; } }
         public float BasePickupTime { get { return basePickupTime; } }
+		public int Amount { get { return amount; } }
         public Resource Resource { get { return resource; } }
 
         [System.Serializable]
@@ -29,27 +33,25 @@ namespace Polyjam2019.Pickables
         {            
             private static int PickableDataMaxID = 0;            
 
-            internal PickableData(Resource resource, float weight, float size)
+            internal PickableData(Resource resource, float weight, float size, int amount)
             {
                 Weight = weight;
                 Size = size;
-
                 Resource = resource;
-
+				Amount = amount;
                 ItemID = ++PickableDataMaxID;
             }
 
             public int ItemID { get; private set; }
-
             public float Weight { get; private set; }
             public float Size { get; private set; }
-
+			public int Amount { get; private set; }
             public Resource Resource { get; private set; }
         }
 
         public PickableData CreatePickableData()
         {
-            return new PickableData(Resource, Weight, Size);
+            return new PickableData(Resource, Weight, Size, Amount);
         }
     }
 }

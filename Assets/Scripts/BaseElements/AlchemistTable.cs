@@ -22,16 +22,15 @@ public class AlchemistTable : Workstation
 					break;
 
 				case 2:
-					result.Add(Resource.Food, 2);
+					result.Add(Resource.Food, 1);
 					break;
 
 				case 3:
-					result.Add(Resource.Herbs, 2);
+					result.Add(Resource.Food, 2);
 					break;
 
 				case 4:
 					result.Add(Resource.Food, 1);
-					result.Add(Resource.Herbs, 1);
 					result.Add(Resource.Clues, 1);
 					break;
 			}

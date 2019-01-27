@@ -95,7 +95,6 @@ public class BaseState : MonoBehaviour
 		workstations.Add(workshop.Id, workshop);
 		//Startowe zasoby
 		resources[Resource.Food] += 4;
-		resources[Resource.Herbs] += 1;
 		resources[Resource.Scrap] += 1;
 		resources[Resource.Clues] += 1;
 	}

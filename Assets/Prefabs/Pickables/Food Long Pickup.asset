@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weight: 0
   size: 0
-  basePickupTime: 5.4
+  basePickupTime: 2
+  amount: 3
   resource: 0

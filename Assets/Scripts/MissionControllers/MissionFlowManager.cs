@@ -57,9 +57,12 @@ public class MissionFlowManager : MonoBehaviour
 			{
 				if (!resourcesGathered.ContainsKey(data.Resource))
 				{
-					resourcesGathered.Add(data.Resource, 0);
+					resourcesGathered.Add(data.Resource, data.Amount);
 				}
-				resourcesGathered[data.Resource]++;
+				else
+				{
+					resourcesGathered[data.Resource] += data.Amount;
+				}
 			}
 			BaseState.Instance.ChangeValuesOfResources(resourcesGathered);
 		}
