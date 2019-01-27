@@ -7,6 +7,8 @@ public class PlayerCharacterFootsteps : MonoBehaviour
 	[SerializeField] private float maxSoundRadius = 10.0f;
 	[SerializeField] private float speedForMaxSoundRadius = 4.0f;
 	[SerializeField] private float stepDistance = 1.0f;
+
+	[SerializeField] private AudioSource footstepSource;
 	
 	private new Rigidbody2D rigidbody2D;
 	private SoundEmitter soundEmitter;
@@ -29,6 +31,18 @@ public class PlayerCharacterFootsteps : MonoBehaviour
 			float speed = rigidbody2D.velocity.magnitude;
 			float radius = maxSoundRadius * Mathf.Clamp01(speed / speedForMaxSoundRadius);
 			soundEmitter.EmitSound(radius);
+		}
+
+		if (rigidbody2D.velocity.magnitude > 0.1f)
+		{
+			if (!footstepSource.isPlaying)
+			{
+				footstepSource.Play();
+			}
+		}
+		else if (footstepSource.isPlaying)
+		{
+			footstepSource.Stop();
 		}
 	}
 }

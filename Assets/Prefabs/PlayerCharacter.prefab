@@ -340,6 +340,7 @@ GameObject:
   - component: {fileID: 5586870420912171323}
   - component: {fileID: 4623146412399375908}
   - component: {fileID: 5594419984224947687}
+  - component: {fileID: 1982958812}
   m_Layer: 9
   m_Name: PlayerCharacter
   m_TagString: Player
@@ -507,6 +508,17 @@ MonoBehaviour:
   shotSoundRange: 10
   audioSource: {fileID: 6907444200970618015}
   audioClip: {fileID: 8300000, guid: 1cc531fbb8a9585458e2d5b620a67d92, type: 3}
+  audioClips:
+  - {fileID: 8300000, guid: ba249294cb7e60c4fa541754f1a07e83, type: 3}
+  - {fileID: 8300000, guid: 2ff3eb444f3f7ce4692de373bd34f1a0, type: 3}
+  - {fileID: 8300000, guid: 150c11e1cfc9ebe4eae3c98d8aa44ece, type: 3}
+  - {fileID: 8300000, guid: 41fe2bd4d2f32e94e9e3b5930c0f0677, type: 3}
+  - {fileID: 8300000, guid: 7771fb6c14733c840a06612d9cd7d404, type: 3}
+  - {fileID: 8300000, guid: 7dc8e4311b99737459fab0dd58a56f77, type: 3}
+  - {fileID: 8300000, guid: bf371a909122bac41a8f4e1c49474951, type: 3}
+  - {fileID: 8300000, guid: 71b38c3b8c5eeff408ef1d5f4168e6b0, type: 3}
+  - {fileID: 8300000, guid: 1cc531fbb8a9585458e2d5b620a67d92, type: 3}
+  - {fileID: 8300000, guid: 2c22d41edf7dd6c46b8daf2053238a2a, type: 3}
 --- !u!114 &4196295872132954078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -633,6 +645,7 @@ MonoBehaviour:
   maxSoundRadius: 5
   speedForMaxSoundRadius: 4
   stepDistance: 1.5
+  footstepSource: {fileID: 1982958812}
 --- !u!114 &5586870420912171323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -679,6 +692,102 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnedObjects:
   - {fileID: 8370347821428549256, guid: f3546bd05bbd2d343830c0336a071a8f, type: 3}
+--- !u!82 &1982958812
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4507089318037479748}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e1ecb9898e6d4784aa534d70564ffd37, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.455
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &5673889729374871140
 GameObject:
   m_ObjectHideFlags: 0
@@ -704,7 +813,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5673889729374871140}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.563, z: -5}
+  m_LocalPosition: {x: 0, y: 0.867, z: -5}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 4570853131545890597}

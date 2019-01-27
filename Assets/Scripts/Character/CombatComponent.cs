@@ -10,7 +10,7 @@ public class CombatComponent : MonoBehaviour
 	[SerializeField] private float attackCooldown = 1.0f;
 	[SerializeField] private float shotSoundRange = 30.0f;
 	[SerializeField] private AudioSource audioSource;
-	[SerializeField] private AudioClip audioClip;
+	[SerializeField] private AudioClip[] audioClips;
 	private float cooldownRemaining;
 	public event System.Action OnMeleeAttack;
 	public event System.Action OnShot;
@@ -51,7 +51,7 @@ public class CombatComponent : MonoBehaviour
 	{
 		if (cooldownRemaining <= 0)
 		{
-			audioSource.PlayOneShot(audioClip);
+			audioSource.PlayOneShot(audioClips[Random.Range(0, audioClips.Length)]);
 			PerformAttack(meleeRange, meleeDamage);
 			OnMeleeAttack?.Invoke();
 		}
