@@ -3,9 +3,11 @@ using UnityEngine;
 
 public class AICharacterController : MonoBehaviour
 {
-    [SerializeField] private PatrolPoint[] patrolPoints;
+    [SerializeField] private GameObject patrolRoute;
     [SerializeField] private float maxMovementSpeed = 5.0f;
     private StateMachine stateMachine = null;
+    private PatrolPoint[] patrolPoints;
+
     
     public VisionCone Vision { get; private set; }
     public HearingComponent Hearing { get; private set; }
@@ -16,6 +18,7 @@ public class AICharacterController : MonoBehaviour
     {
         Vision = GetComponent<VisionCone>();
         Hearing = GetComponent<HearingComponent>();
+        patrolPoints = patrolRoute.GetComponentsInChildren<PatrolPoint>();
         stateMachine = new StateMachine(this, new Patrol());
     }
 
