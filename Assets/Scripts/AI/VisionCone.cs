@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class VisionCone : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	[SerializeField] private LayerMask raycastMask;
+	
+	private HashSet<GameObject> spottedObjects = new HashSet<GameObject>();
+	public IEnumerable<GameObject> SpottedEnemies => spottedObjects;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	private void OnTriggerEnter2D(Collider2D other)
+	{
+		var hit = Physics2D.Raycast(transform.position, other.transform.position,
+			Vector3.Distance(transform.position, other.transform.position), raycastMask);
+		if (hit.collider == other)
+		{
+			spottedObjects.Add(other.gameObject);
+		}
+	}
 }

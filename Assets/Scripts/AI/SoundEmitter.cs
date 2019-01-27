@@ -2,17 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundEmitter : MonoBehaviour
+public static class SoundEmitter
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public static void EmitSound(Vector3 position, float radius)
+	{
+		
+	}
 }
