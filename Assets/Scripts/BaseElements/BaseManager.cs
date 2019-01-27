@@ -18,6 +18,28 @@ public class BaseManager : MonoBehaviour
 	public int ThreatLevel { get; private set; } = 0;
 
 
+    private static BaseManager instance = null;
+    public static BaseManager Instance
+    {
+        get
+        {
+            return instance;
+        }
+
+        private set
+        {
+            if(instance == null)
+            {
+                instance = value;
+            }
+            else
+            {
+                //  Jeśli ten kod zrzuci atomówkę na domek bohatera - winić Rafała
+                Destroy(value.gameObject);
+            }
+        }
+    }
+
 	public Action SelectedAction 
 	{
 		get
@@ -47,6 +69,7 @@ public class BaseManager : MonoBehaviour
 
 	private void Awake()
 	{
+        Instance = this;
 		dayEndAnimation = Resources.FindObjectsOfTypeAll<FadeOutScreen>()[0];
 		Assert.IsNotNull(dayEndAnimation, "Missing dayEndAnimation");
 		gameEndConditions = FindObjectOfType<GameEndConditions>();

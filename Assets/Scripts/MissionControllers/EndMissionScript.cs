@@ -23,7 +23,10 @@ namespace Polyjam2019
                 resourcesGathered[data.Resource]++;
             }
 
-            // TODO: BaseManager.ChangeValuesOfResource(resourcesGathered)
+            if (BaseManager.Instance != null)
+            {
+                BaseManager.Instance.ChangeValuesOfResources(resourcesGathered);
+            }
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
