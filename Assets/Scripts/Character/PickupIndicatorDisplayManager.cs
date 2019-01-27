@@ -17,8 +17,8 @@ namespace Polyjam2019
         [SerializeField]
         private Transform loadingIndicatorMaskTransform;
 
-        private Vector3 initMaskScale = new Vector3(1, 2, 1);
-        private Vector3 zeroMaskScale = new Vector3(1, 0, 1);
+        private Vector3 initMaskScale = new Vector3(3, 6, 1);
+        private Vector3 zeroMaskScale = new Vector3(3, 0, 1);
 
         private void Awake()
         {
