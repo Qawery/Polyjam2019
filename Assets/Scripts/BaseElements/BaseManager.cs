@@ -31,6 +31,11 @@ public class BaseManager : MonoBehaviour
             {
                 instance = value;
             }
+            else
+            {
+                //  Jeśli ten kod zrzuci atomówkę na domek bohatera - winić Rafała
+                Destroy(value.gameObject);
+            }
         }
     }
 
