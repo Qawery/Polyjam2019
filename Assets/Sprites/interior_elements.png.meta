@@ -12,7 +12,7 @@ TextureImporter:
     21300014: interior_elements_7
     21300016: interior_elements_8
     21300018: DayEndLight
-    21300020: interior_elements_10
+    21300020: bounds
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -295,16 +295,16 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: interior_elements_10
+      name: bounds
       rect:
         serializedVersion: 2
         x: 0
-        y: 7
-        width: 3111
-        height: 631
+        y: 9
+        width: 2475
+        height: 271
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 143, y: 127, z: 130, w: 106}
       outline: []
       physicsShape: []
       tessellationDetail: 0

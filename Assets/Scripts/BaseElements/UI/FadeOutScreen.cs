@@ -12,14 +12,13 @@ public class FadeOutScreen : MonoBehaviour
 
 	private const float FADE_OUT_SPEED = 1.0f;
 	private FadeOutCycle fadeOutCycle = FadeOutCycle.LIGHT;
-	private Image image;
+	[SerializeField] private Image image;
 	public System.Action OnLighteningEnd;
 	public System.Action OnDarkeningEnd;
 
 
 	private void Awake()
 	{
-		image = GetComponent<Image>();
 		Assert.IsNotNull(image, "Missing image");
 	}
 
@@ -54,6 +53,14 @@ public class FadeOutScreen : MonoBehaviour
 		newColor.a = 0.0f;
 		image.color = newColor;
 		fadeOutCycle = FadeOutCycle.DARKENING;
+	}
+
+	public void SetDark()
+	{
+		Color newColor = image.color;
+		newColor.a = 1.0f;
+		image.color = newColor;
+		fadeOutCycle = FadeOutCycle.DARK;
 	}
 
 	public void StartLightening()

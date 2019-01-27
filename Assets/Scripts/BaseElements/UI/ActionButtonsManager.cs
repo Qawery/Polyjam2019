@@ -6,27 +6,36 @@ using System.Collections.Generic;
 public class ActionButtonsManager : MonoBehaviour
 {
 	[SerializeField] private SelectActionButton selectActionButtonPrefab;
-	private BaseManager baseManager;
 	private List<SelectActionButton> spawnedButtons = new List<SelectActionButton>();
 
 
 	private void Awake()
 	{
 		Assert.IsNotNull(selectActionButtonPrefab);
-		baseManager = FindObjectOfType<BaseManager>();
-		Assert.IsNotNull(baseManager, "Missing baseManager");
-		baseManager.OnActionChange += UpdateActions;
-		baseManager.OnPostActionResolve += UpdateActions;
+		BaseControlFlowManager.OnActionChange += UpdateActions;
+		UpdateActions();
 	}
 
-	private void Start()
+	private void OnDestroy()
 	{
-		UpdateActions();
+		BaseControlFlowManager.OnActionChange -= UpdateActions;
 	}
 
 	private void UpdateActions()
 	{
-		List<Action> availableActions = baseManager.GetAvailableAction();
+		int buttonIndex = 0;
+		while (buttonIndex < spawnedButtons.Count)
+		{
+			if (spawnedButtons[buttonIndex] == null)
+			{
+				spawnedButtons.RemoveAt(buttonIndex);
+			}
+			else
+			{
+				++buttonIndex;
+			}
+		}
+		List<Action> availableActions = BaseState.Instance.GetAvailableAction();
 		while (spawnedButtons.Count > availableActions.Count)
 		{
 			spawnedButtons.RemoveAt(spawnedButtons.Count - 1);
@@ -34,10 +43,10 @@ public class ActionButtonsManager : MonoBehaviour
 		while (spawnedButtons.Count < availableActions.Count)
 		{
 			SelectActionButton newButton = Instantiate(selectActionButtonPrefab);
-			newButton.transform.parent = transform;
+			newButton.transform.SetParent(transform, false);
 			spawnedButtons.Add(newButton);
 		}
-		int buttonIndex = 0;
+		buttonIndex = 0;
 		foreach (Action action in availableActions)
 		{
 			spawnedButtons[buttonIndex].SetAction(action);

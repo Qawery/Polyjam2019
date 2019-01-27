@@ -23,9 +23,10 @@ namespace Polyjam2019
                 resourcesGathered[data.Resource]++;
             }
 
-            if (BaseManager.Instance != null)
+            if (BaseState.Instance != null)
             {
-                BaseManager.Instance.ChangeValuesOfResources(resourcesGathered);
+                BaseState.Instance.ChangeValuesOfResources(resourcesGathered);
+				Application.LoadLevel("Base");
             }
         }
 
@@ -36,5 +37,5 @@ namespace Polyjam2019
                 FinishMission();
             }
         }
-    }
+	}
 }
