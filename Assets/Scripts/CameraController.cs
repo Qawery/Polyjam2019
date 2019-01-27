@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private Transform target;
-    [SerializeField] private BoxCollider levelBoundary;
+    [SerializeField] private BoxCollider2D levelBoundary;
 
     private Vector2 min, max;
 
@@ -20,12 +20,12 @@ public class CameraController : MonoBehaviour
         if (target != null)
         {
             Vector3 newPosition = target.position - Vector3.forward * 10;
-            Vector2 cameraMin = newPosition.XY() - Vector2.one * Camera.main.orthographicSize;
-            Vector2 cameraMax = newPosition.XY() + Vector2.one * Camera.main.orthographicSize;
+            Vector2 cameraMin = newPosition.XY() - new Vector2(Camera.main.aspect, 1) * Camera.main.orthographicSize;
+            Vector2 cameraMax = newPosition.XY() + new Vector2(Camera.main.aspect, 1) * Camera.main.orthographicSize;
 
             if (cameraMin.x < min.x)
             {
-                newPosition.x += (min.x - cameraMax.x);
+                newPosition.x += (min.x - cameraMin.x);
             }
             else if(cameraMax.x > max.x)
             {
@@ -34,7 +34,7 @@ public class CameraController : MonoBehaviour
 
             if (cameraMin.y < min.y)
             {
-                newPosition.y += (min.y - cameraMax.y);
+                newPosition.y += (min.y - cameraMin.y);
             }
             else if (cameraMax.y > max.y)
             {
