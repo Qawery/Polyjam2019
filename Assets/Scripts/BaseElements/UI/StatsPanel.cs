@@ -16,6 +16,11 @@ public class StatsPanel : MonoBehaviour
 		UpdateState();
 	}
 
+	private void OnDestroy()
+	{
+		BaseControlFlowManager.OnResourceChange -= UpdateState;
+	}
+
 	private void UpdateState()
 	{
 		string newText = "Days Left: " + BaseState.Instance.DaysLeft.ToString() + "\n";

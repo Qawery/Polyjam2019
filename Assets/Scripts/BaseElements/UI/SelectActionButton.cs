@@ -23,6 +23,11 @@ public class SelectActionButton : MonoBehaviour
 		BaseControlFlowManager.OnResourceChange += UpdateButtonColor;
 	}
 
+	private void OnDestroy()
+	{
+		BaseControlFlowManager.OnResourceChange -= UpdateButtonColor;
+	}
+
 	public void SetAction(Action newAction)
 	{
 		action = newAction;

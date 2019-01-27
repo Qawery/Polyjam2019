@@ -16,8 +16,25 @@ public class ActionButtonsManager : MonoBehaviour
 		UpdateActions();
 	}
 
+	private void OnDestroy()
+	{
+		BaseControlFlowManager.OnActionChange -= UpdateActions;
+	}
+
 	private void UpdateActions()
 	{
+		int buttonIndex = 0;
+		while (buttonIndex < spawnedButtons.Count)
+		{
+			if (spawnedButtons[buttonIndex] == null)
+			{
+				spawnedButtons.RemoveAt(buttonIndex);
+			}
+			else
+			{
+				++buttonIndex;
+			}
+		}
 		List<Action> availableActions = BaseState.Instance.GetAvailableAction();
 		while (spawnedButtons.Count > availableActions.Count)
 		{
@@ -29,7 +46,7 @@ public class ActionButtonsManager : MonoBehaviour
 			newButton.transform.parent = transform;
 			spawnedButtons.Add(newButton);
 		}
-		int buttonIndex = 0;
+		buttonIndex = 0;
 		foreach (Action action in availableActions)
 		{
 			spawnedButtons[buttonIndex].SetAction(action);

@@ -20,7 +20,7 @@ public class BaseControlFlowManager : MonoBehaviour
 		endGameButton.gameObject.SetActive(false);
 		fadeOutScreen = Resources.FindObjectsOfTypeAll<FadeOutScreen>()[0];
 		Assert.IsNotNull(fadeOutScreen, "Missing dayEndAnimation");
-		BaseState.Instance.OnActionChange += OnActionChange;
+		BaseState.Instance.OnActionChange += ActionChanged;
 		BaseState.Instance.OnResourceChange += OnResourceChange;
 	}
 
@@ -125,5 +125,15 @@ public class BaseControlFlowManager : MonoBehaviour
 		{
 			fadeOutScreen.StartLightening();
 		}
+	}
+
+	private void ActionChanged()
+	{
+		OnActionChange?.Invoke();
+	}
+
+	private void ResourceChanged()
+	{
+		OnResourceChange?.Invoke();
 	}
 }

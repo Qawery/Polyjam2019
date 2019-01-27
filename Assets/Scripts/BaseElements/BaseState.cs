@@ -182,6 +182,7 @@ public class BaseState : MonoBehaviour
 		}
 	}
 	
+	//FIXME!!!
 	private void Update()
 	{
 		if (Input.GetKey(KeyCode.Escape))
