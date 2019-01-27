@@ -5,7 +5,6 @@ using UnityEngine.Assertions;
 
 public class SelectActionButton : MonoBehaviour
 {
-	private BaseManager baseManager;
 	private Image image;
 	private Text text;
 	private Action action;
@@ -21,9 +20,7 @@ public class SelectActionButton : MonoBehaviour
 		Assert.IsNotNull(button, "Missing button");
 		button.onClick.AddListener(OnClicked);
 		gameObject.SetActive(false);
-		baseManager = BaseManager.Instance;
-		Assert.IsNotNull(baseManager, "Missing baseManager");
-		baseManager.OnResourcesChange += UpdateButtonColor;
+		BaseControlFlowManager.OnResourceChange += UpdateButtonColor;
 	}
 
 	public void SetAction(Action newAction)
@@ -52,7 +49,7 @@ public class SelectActionButton : MonoBehaviour
 
 	private void UpdateButtonColor()
 	{
-		if (baseManager.HasResources(action.ActionCost))
+		if (BaseState.Instance.HasResources(action.ActionCost))
 		{
 			image.color = Color.green;
 		}
@@ -64,6 +61,6 @@ public class SelectActionButton : MonoBehaviour
 
 	private void OnClicked()
 	{
-		baseManager.SelectedAction = action;
+		BaseState.Instance.SelectedAction = action;
 	}
 }

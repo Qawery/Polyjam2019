@@ -9,6 +9,7 @@ public class Explore : Action
 
 	public override void Execute()
 	{
+		BaseState.Instance.wentToMission = true;
 		Application.LoadLevel("Mission01");
 	}
 }

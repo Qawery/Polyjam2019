@@ -5,16 +5,12 @@ using UnityEngine.Assertions;
 
 public class StatsPanel : MonoBehaviour
 {
-	private BaseManager baseManager;
 	private Text text;
 
 
 	private void Start()
 	{
-		baseManager = BaseManager.Instance;
-		Assert.IsNotNull(baseManager, "Missing baseManager");
-		baseManager.OnResourcesChange += UpdateState;
-		baseManager.OnNewDayStart += UpdateState;
+		BaseControlFlowManager.OnResourceChange += UpdateState;
 		text = GetComponent<Text>();
 		Assert.IsNotNull(text, "Missing text");
 		UpdateState();
@@ -22,12 +18,12 @@ public class StatsPanel : MonoBehaviour
 
 	private void UpdateState()
 	{
-		string newText = "Days Left: " + baseManager.DaysLeft.ToString() + "\n";
-		newText += "Threat Level: " + baseManager.ThreatLevel + "\n";
+		string newText = "Days Left: " + BaseState.Instance.DaysLeft.ToString() + "\n";
+		newText += "Threat Level: " + BaseState.Instance.ThreatLevel + "\n";
 		newText += "Resources:";
 		for (int i = 0; i < (int)Resource.MAX; ++i)
 		{
-			newText += "\n" + ((Resource)i).ToString() + ": " + baseManager.GetResourceQuantity((Resource)i);
+			newText += "\n" + ((Resource)i).ToString() + ": " + BaseState.Instance.GetResourceQuantity((Resource)i);
 		}
 		text.text = newText;
 	}

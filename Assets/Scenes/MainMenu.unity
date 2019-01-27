@@ -930,7 +930,7 @@ GameObject:
   - component: {fileID: 522279762}
   - component: {fileID: 522279761}
   m_Layer: 0
-  m_Name: BaseManager
+  m_Name: BaseState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
