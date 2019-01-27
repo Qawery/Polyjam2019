@@ -14,7 +14,7 @@ public class BaseManager : MonoBehaviour
 	public System.Action OnPostActionResolve;
 	public System.Action OnNewDayStart;
 	private Action selectedAction = new NoneAction();
-	public int DaysLeft { get; private set; } = 6;
+	public int DaysLeft { get; private set; } = 30;
 	public int ThreatLevel { get; private set; } = 0;
 
 
@@ -55,6 +55,11 @@ public class BaseManager : MonoBehaviour
 		{
 			resources.Add((Resource) i, 0);
 		}
+		//Startowe zasoby
+		ChangeValueOfResource(Resource.Food, 4);
+		ChangeValueOfResource(Resource.Herbs, 1);
+		ChangeValueOfResource(Resource.Scrap, 1);
+		ChangeValueOfResource(Resource.Clues, 1);
 		OnResourcesChange?.Invoke();
 	}
 
@@ -81,6 +86,7 @@ public class BaseManager : MonoBehaviour
 	{
 		List<Action> result = new List<Action>();
 		result.Add(new NoneAction());
+		result.Add(new Explore());
 		foreach (var workstation in workstations.Values)
 		{
 			if (workstation.CurrentLevel < workstation.MaxLevel)
