@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 9032750457771431800}
   - component: {fileID: 8627322419147543347}
   - component: {fileID: 8631528720936242549}
-  - component: {fileID: 7229778224170439081}
   m_Layer: 5
   m_Name: SelectActionButton
   m_TagString: Untagged
@@ -39,7 +38,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 380, y: 180}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &1962453917066439098
 CanvasRenderer:
@@ -132,20 +131,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc17060417ebd284c9cf104ed983375c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7229778224170439081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 128862594957706078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalFit: 2
-  m_VerticalFit: 2
 --- !u!1 &7719801831702314113
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,10 +163,10 @@ RectTransform:
   m_Father: {fileID: 2526250991280765759}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 163.5, y: 107.6}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4011941113888835567
 CanvasRenderer:
@@ -213,7 +198,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 6280f1db0543d9549ac65fd3bdeb7a99, type: 3}
-    m_FontSize: 47
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -222,6 +207,6 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Action
