@@ -23,6 +23,7 @@ public class StatsPanel : MonoBehaviour
 	private void UpdateState()
 	{
 		string newText = "Days Left: " + baseManager.DaysLeft.ToString() + "\n";
+		newText += "Threat Level: " + baseManager.ThreatLevel + "\n";
 		newText += "Resources:";
 		for (int i = 0; i < (int)Resource.MAX; ++i)
 		{
