@@ -15,4 +15,5 @@ MonoBehaviour:
   weight: 0
   size: 0
   basePickupTime: 1
-  resource: 2
+  amount: 1
+  resource: 1

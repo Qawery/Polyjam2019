@@ -89,8 +89,6 @@ public class BaseState : MonoBehaviour
 		workstations.Add(alchemistTable.Id, alchemistTable);
 		Altar altar = new Altar();
 		workstations.Add(altar.Id, altar);
-		Garden garden = new Garden();
-		workstations.Add(garden.Id, garden);
 		Workshop workshop = new Workshop();
 		workstations.Add(workshop.Id, workshop);
 		//Startowe zasoby
