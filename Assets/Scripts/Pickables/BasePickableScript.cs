@@ -85,8 +85,12 @@ namespace Polyjam2019.Pickables
             if(triggerer != null)
             {
                 CharacterEquipment equipment = triggerer.GetComponent<CharacterEquipment>();
-                equipment.ItemAvailableForPickup = true;
-                equipment.CurrentlyAvailableItem = this;
+
+                if (equipment != null)
+                {
+                    equipment.ItemAvailableForPickup = true;
+                    equipment.CurrentlyAvailableItem = this;
+                }
             }
         }
 
