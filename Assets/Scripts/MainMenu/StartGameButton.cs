@@ -14,6 +14,10 @@ public class StartGameButton : MonoBehaviour
 
 	private void OnClicked()
 	{
+		if (BaseState.Instance != null)
+		{
+			BaseState.Instance.Reset();
+		}
 		Application.LoadLevel("Base");
 	}
 }

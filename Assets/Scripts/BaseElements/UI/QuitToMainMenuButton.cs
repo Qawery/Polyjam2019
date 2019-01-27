@@ -14,7 +14,10 @@ public class QuitToMainMenuButton : MonoBehaviour
 
 	private void OnClicked()
 	{
-		BaseState.Instance.Reset();
+		if (BaseState.Instance != null)
+		{
+			BaseState.Instance.Reset();
+		}
 		Application.LoadLevel("MainMenu");
 	}
 }
