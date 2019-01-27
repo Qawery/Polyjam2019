@@ -2,17 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HearingComponent : MonoBehaviour
+public class HearingComponent : MonoBehaviour, ISoundReceiver
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public event System.Action<Vector2> OnSoundReceived;
+	public void ReceiveSound(Vector2 position)
+	{
+		Debug.Log(name + " received sound at " + position);
+		OnSoundReceived?.Invoke(position);
+	}
 }
