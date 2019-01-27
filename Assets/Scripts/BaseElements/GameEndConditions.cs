@@ -11,7 +11,7 @@ public class GameEndConditions : MonoBehaviour
 	private BaseManager baseManager;
 
 
-	private void Awake()
+	private void Start()
 	{
 		Assert.IsNotNull(endGameMessage, "Missing endGameMessage");
 		endGameMessage.gameObject.SetActive(false);
@@ -19,7 +19,7 @@ public class GameEndConditions : MonoBehaviour
 		endGameButton.gameObject.SetActive(false);
 		dayEndAnimation = Resources.FindObjectsOfTypeAll<FadeOutScreen>()[0];
 		Assert.IsNotNull(dayEndAnimation, "Missing dayEndAnimation");
-		baseManager = FindObjectOfType<BaseManager>();
+		baseManager = BaseManager.Instance;
 		Assert.IsNotNull(baseManager, "Missing baseManager");
 		baseManager.OnPostActionResolve += GameEndConditionsCheck;
 	}

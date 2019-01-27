@@ -15,5 +15,7 @@ public class QuitToMainMenuButton : MonoBehaviour
 	private void OnClicked()
 	{
 		Application.LoadLevel("MainMenu");
+		DestroyObject(BaseManager.Instance.gameObject);
+		BaseManager.Instance = null;
 	}
 }

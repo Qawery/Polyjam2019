@@ -8,9 +8,9 @@ public class EndDayButton : MonoBehaviour
 	private BaseManager baseManager;
 
 
-	private void Awake()
+	private void Start()
 	{
-		baseManager = FindObjectOfType<BaseManager>();
+		baseManager = BaseManager.Instance;
 		Assert.IsNotNull(baseManager, "Missing baseManager");
 		Button button = GetComponent<Button>();
 		Assert.IsNotNull(button, "Missing button");

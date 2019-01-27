@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Assertions;
 using System.Collections.Generic;
 
@@ -26,17 +27,12 @@ public class BaseManager : MonoBehaviour
             return instance;
         }
 
-        private set
+        set
         {
             if(instance == null)
             {
                 instance = value;
-            }
-            else
-            {
-                //  Jeśli ten kod zrzuci atomówkę na domek bohatera - winić Rafała
-                Destroy(value.gameObject);
-            }
+			}
         }
     }
 
@@ -69,28 +65,45 @@ public class BaseManager : MonoBehaviour
 
 	private void Awake()
 	{
-        Instance = this;
-		dayEndAnimation = Resources.FindObjectsOfTypeAll<FadeOutScreen>()[0];
-		Assert.IsNotNull(dayEndAnimation, "Missing dayEndAnimation");
-		gameEndConditions = FindObjectOfType<GameEndConditions>();
-		Assert.IsNotNull(gameEndConditions, "Missing gameEndConditions");
-		for (int i = 0; i < (int) Resource.MAX; ++i)
+		if (Instance == null)
 		{
-			resources.Add((Resource) i, 0);
+			Instance = this;
+			for (int i = 0; i < (int)Resource.MAX; ++i)
+			{
+				resources.Add((Resource)i, 0);
+			}
+			AlchemistTable alchemistTable = new AlchemistTable();
+			workstations.Add(alchemistTable.Id, alchemistTable);
+			Altar altar = new Altar();
+			workstations.Add(altar.Id, altar);
+			Garden garden = new Garden();
+			workstations.Add(garden.Id, garden);
+			Workshop workshop = new Workshop();
+			workstations.Add(workshop.Id, workshop);
+			//Startowe zasoby
+			resources[Resource.Food] += 4;
+			resources[Resource.Herbs] += 1;
+			resources[Resource.Scrap] += 1;
+			resources[Resource.Clues] += 1;
+			DontDestroyOnLoad(gameObject);
+			SceneManager.sceneLoaded += OnSceneLoaded;
 		}
-		//Startowe zasoby
-		ChangeValueOfResource(Resource.Food, 4);
-		ChangeValueOfResource(Resource.Herbs, 1);
-		ChangeValueOfResource(Resource.Scrap, 1);
-		ChangeValueOfResource(Resource.Clues, 1);
-		OnResourcesChange?.Invoke();
+		else
+		{
+			Destroy(gameObject);
+		}
 	}
 
-	public void RegisterWorkstation(Workstation workstation)
+	private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 	{
-		Assert.IsNotNull(workstation, "Null workstation");
-		Assert.IsFalse(workstations.ContainsKey(workstation.Id), "Duplicate key in workstationPrefabs");
-		workstations.Add(workstation.Id, workstation);
+		if (scene.name == "Base")
+		{
+			dayEndAnimation = Resources.FindObjectsOfTypeAll<FadeOutScreen>()[0];
+			Assert.IsNotNull(dayEndAnimation, "Missing dayEndAnimation");
+			gameEndConditions = FindObjectOfType<GameEndConditions>();
+			Assert.IsNotNull(gameEndConditions, "Missing gameEndConditions");
+			OnResourcesChange?.Invoke();
+		}
 	}
 
 	public Workstation GetWorkstationOfType(WorkstationType workstationType)

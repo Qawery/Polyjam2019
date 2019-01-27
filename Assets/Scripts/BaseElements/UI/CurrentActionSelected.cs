@@ -9,9 +9,9 @@ public class CurrentActionSelected : MonoBehaviour
 	private Text text;
 
 
-	private void Awake()
+	private void Start()
 	{
-		baseManager = FindObjectOfType<BaseManager>();
+		baseManager = BaseManager.Instance;
 		Assert.IsNotNull(baseManager, "Missing baseManager");
 		baseManager.OnActionChange += UpdateAction;
 		text = GetComponent<Text>();

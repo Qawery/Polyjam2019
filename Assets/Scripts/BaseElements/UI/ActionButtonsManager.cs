@@ -10,17 +10,14 @@ public class ActionButtonsManager : MonoBehaviour
 	private List<SelectActionButton> spawnedButtons = new List<SelectActionButton>();
 
 
-	private void Awake()
+	private void Start()
 	{
 		Assert.IsNotNull(selectActionButtonPrefab);
-		baseManager = FindObjectOfType<BaseManager>();
+		baseManager = BaseManager.Instance;
 		Assert.IsNotNull(baseManager, "Missing baseManager");
 		baseManager.OnActionChange += UpdateActions;
 		baseManager.OnPostActionResolve += UpdateActions;
-	}
-
-	private void Start()
-	{
+		baseManager.OnNewDayStart += UpdateActions;
 		UpdateActions();
 	}
 

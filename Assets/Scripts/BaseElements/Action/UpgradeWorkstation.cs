@@ -11,7 +11,7 @@ public class UpgradeWorkstation : Action
 	{ 
 		get
 		{
-			return "Upgrade " + workstation.name + " to level " + (workstation.CurrentLevel + 1).ToString();
+			return "Upgrade " + workstation.Name + " to level " + (workstation.CurrentLevel + 1).ToString();
 		}
 	}
 

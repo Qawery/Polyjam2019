@@ -13,9 +13,9 @@ public class DebugResourceButton : MonoBehaviour
 	private Image image;
 
 
-	private void Awake()
+	private void Start()
 	{
-		baseManager = FindObjectOfType<BaseManager>();
+		baseManager = BaseManager.Instance;
 		Assert.IsNotNull(baseManager, "Missing baseManager");
 		text = GetComponentInChildren<Text>();
 		Assert.IsNotNull(text, "Missing text");
