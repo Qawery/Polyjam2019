@@ -1,25 +1,21 @@
 ﻿using UnityEngine;
-using UnityEngine.Assertions;
 using System.Collections.Generic;
 
 
-public class BaseManager : MonoBehaviour
+public class BaseState : MonoBehaviour
 {
-	private GameEndConditions gameEndConditions;
-	private FadeOutScreen dayEndAnimation;
+	public System.Action OnActionChange;
+	public System.Action OnResourceChange;
 	private Dictionary<Resource, int> resources = new Dictionary<Resource, int>();
 	private Dictionary<WorkstationType, Workstation> workstations = new Dictionary<WorkstationType, Workstation>();
-	public System.Action OnResourcesChange;
-	public System.Action OnActionChange;
-	public System.Action OnPostActionResolve;
-	public System.Action OnNewDayStart;
 	private Action selectedAction = new NoneAction();
-	public int DaysLeft { get; private set; } = 30;
-	public int ThreatLevel { get; private set; } = 0;
+	public int DaysLeft { get; set; } = 30;
+	public int ThreatLevel { get; set; } = 0;
+	public bool wentToMission = false;
 
 
-    private static BaseManager instance = null;
-    public static BaseManager Instance
+    private static BaseState instance = null;
+    public static BaseState Instance
     {
         get
         {
@@ -31,12 +27,7 @@ public class BaseManager : MonoBehaviour
             if(instance == null)
             {
                 instance = value;
-            }
-            else
-            {
-                //  Jeśli ten kod zrzuci atomówkę na domek bohatera - winić Rafała
-                Destroy(value.gameObject);
-            }
+			}
         }
     }
 
@@ -57,40 +48,55 @@ public class BaseManager : MonoBehaviour
 			{
 				selectedAction = value;
 				ChangeValuesOfResources(selectedAction.ActionCost, true);
+				OnActionChange?.Invoke();
 			}
 			else
 			{
 				selectedAction = new NoneAction();
+				OnActionChange?.Invoke();
 			}
-			OnActionChange?.Invoke();
 		}
 	}
 
 
 	private void Awake()
 	{
-        Instance = this;
-		dayEndAnimation = Resources.FindObjectsOfTypeAll<FadeOutScreen>()[0];
-		Assert.IsNotNull(dayEndAnimation, "Missing dayEndAnimation");
-		gameEndConditions = FindObjectOfType<GameEndConditions>();
-		Assert.IsNotNull(gameEndConditions, "Missing gameEndConditions");
-		for (int i = 0; i < (int) Resource.MAX; ++i)
+		if (Instance == null)
 		{
-			resources.Add((Resource) i, 0);
+			Instance = this;
+			DontDestroyOnLoad(gameObject);
+			Reset();
 		}
-		//Startowe zasoby
-		ChangeValueOfResource(Resource.Food, 4);
-		ChangeValueOfResource(Resource.Herbs, 1);
-		ChangeValueOfResource(Resource.Scrap, 1);
-		ChangeValueOfResource(Resource.Clues, 1);
-		OnResourcesChange?.Invoke();
+		else
+		{
+			Destroy(gameObject);
+		}
 	}
 
-	public void RegisterWorkstation(Workstation workstation)
+	public void Reset()
 	{
-		Assert.IsNotNull(workstation, "Null workstation");
-		Assert.IsFalse(workstations.ContainsKey(workstation.Id), "Duplicate key in workstationPrefabs");
-		workstations.Add(workstation.Id, workstation);
+		selectedAction = new NoneAction();
+		DaysLeft = 30;
+		ThreatLevel = 0;
+		resources.Clear();
+		for (int i = 0; i < (int)Resource.MAX; ++i)
+		{
+			resources.Add((Resource)i, 0);
+		}
+		workstations.Clear();
+		AlchemistTable alchemistTable = new AlchemistTable();
+		workstations.Add(alchemistTable.Id, alchemistTable);
+		Altar altar = new Altar();
+		workstations.Add(altar.Id, altar);
+		Garden garden = new Garden();
+		workstations.Add(garden.Id, garden);
+		Workshop workshop = new Workshop();
+		workstations.Add(workshop.Id, workshop);
+		//Startowe zasoby
+		resources[Resource.Food] += 4;
+		resources[Resource.Herbs] += 1;
+		resources[Resource.Scrap] += 1;
+		resources[Resource.Clues] += 1;
 	}
 
 	public Workstation GetWorkstationOfType(WorkstationType workstationType)
@@ -130,7 +136,7 @@ public class BaseManager : MonoBehaviour
 				resources[resouces] = 0;
 			}
 		}
-		OnResourcesChange?.Invoke();
+		OnResourceChange?.Invoke();
 	}
 
 	public void ChangeValuesOfResources(Dictionary<Resource, int> resoucesChange, bool negateValues = false)
@@ -146,7 +152,7 @@ public class BaseManager : MonoBehaviour
 				}
 			}
 		}
-		OnResourcesChange?.Invoke();
+		OnResourceChange?.Invoke();
 	}
 
 	public bool HasResources(Dictionary<Resource, int> requestedResouces)
@@ -176,41 +182,13 @@ public class BaseManager : MonoBehaviour
 			return 0;
 		}
 	}
-
-	public void BeginDayEnd()
+	
+	//FIXME!!!
+	private void Update()
 	{
-		dayEndAnimation.gameObject.SetActive(true);
-		dayEndAnimation.StartDarkening();
-		dayEndAnimation.OnDarkeningEnd += BeginActionResolve;
-	}
-
-	private void BeginActionResolve()
-	{
-		dayEndAnimation.OnDarkeningEnd -= BeginActionResolve;
-		Action executedAction = SelectedAction;
-		SelectedAction = new NoneAction();
-		ChangeValuesOfResources(executedAction.ActionCost, true);
-		executedAction.Execute();   //TODO: odpalenie minigry chodzenia, po tym cos powinno odpalać PostActionResolve()
-		PostActionResolve();
-	}
-
-	private void PostActionResolve()
-	{
-		//TODO: Rozważenie wyniku eksploracji
-		dayEndAnimation.OnLighteningEnd += BeginNewDay;
-		OnPostActionResolve?.Invoke();
-	}
-
-	public void BeginNewDay()
-	{
-		--DaysLeft;
-		if (ThreatLevel > 0)
+		if (Input.GetKey(KeyCode.Escape))
 		{
-			--ThreatLevel;
+			Application.LoadLevel("Base");
 		}
-		ChangeValueOfResource(Resource.Food, -1);
-		dayEndAnimation.gameObject.SetActive(false);
-		dayEndAnimation.OnLighteningEnd -= BeginNewDay;
-		OnNewDayStart?.Invoke();
 	}
 }

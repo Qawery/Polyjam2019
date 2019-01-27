@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using UnityEngine;
+using System.Collections.Generic;
 
 
 public class Explore : Action
@@ -8,6 +9,7 @@ public class Explore : Action
 
 	public override void Execute()
 	{
-		//TODO: Odpalenie exploracji z zadanymi parametrami
+		BaseState.Instance.wentToMission = true;
+		Application.LoadLevel("Mission01");
 	}
 }
