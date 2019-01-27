@@ -28,6 +28,15 @@ namespace Polyjam2019.Pickables
             }
         }
 
+        public float PickingUpProgressNormalized
+        {
+            get
+            {
+                return
+                    1.0f - (timeLeft / BasePickupTime);
+            }
+        }
+
         public void StartPickingUp(CharacterEquipment equipment)
         {
             if(equipment.CanFitTheItem(pickableData))
@@ -48,10 +57,11 @@ namespace Polyjam2019.Pickables
 
             while(timeLeft > 0)
             {
-                Debug.Log(timeLeft);
                 timeLeft -= Time.deltaTime;
                 yield return null;
             }
+
+            timeLeft = 0f;
 
             OnPickupEnded();
         }
@@ -105,10 +115,9 @@ namespace Polyjam2019.Pickables
         }
 
         private void OnTriggerExit2D(Collider2D collider)
-        {
-            triggerer = null;
-
+        {            
             OnExit();
+            triggerer = null;
         }
     }
 }
