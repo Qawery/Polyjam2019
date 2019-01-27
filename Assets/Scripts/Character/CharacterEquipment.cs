@@ -32,11 +32,6 @@ namespace Polyjam2019
             totalWeight = 0;
         }
 
-        private void Update()
-        {
-            
-        }
-
         public void PickItem()
         {
             if(CurrentlyAvailableItem != null)
