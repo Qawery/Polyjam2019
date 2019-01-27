@@ -10,15 +10,15 @@ public class StatsPanel : MonoBehaviour
 
 	private void Start()
 	{
-		BaseControlFlowManager.OnResourceChange += UpdateState;
 		text = GetComponent<Text>();
 		Assert.IsNotNull(text, "Missing text");
+		BaseState.Instance.OnResourceChange += UpdateState;
 		UpdateState();
 	}
 
 	private void OnDestroy()
 	{
-		BaseControlFlowManager.OnResourceChange -= UpdateState;
+		BaseState.Instance.OnResourceChange -= UpdateState;
 	}
 
 	private void UpdateState()

@@ -20,12 +20,12 @@ public class SelectActionButton : MonoBehaviour
 		Assert.IsNotNull(button, "Missing button");
 		button.onClick.AddListener(OnClicked);
 		gameObject.SetActive(false);
-		BaseControlFlowManager.OnResourceChange += UpdateButtonColor;
+		BaseState.Instance.OnResourceChange += UpdateButtonColor;
 	}
 
 	private void OnDestroy()
 	{
-		BaseControlFlowManager.OnResourceChange -= UpdateButtonColor;
+		BaseState.Instance.OnResourceChange -= UpdateButtonColor;
 	}
 
 	public void SetAction(Action newAction)

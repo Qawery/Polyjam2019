@@ -12,13 +12,13 @@ public class ActionButtonsManager : MonoBehaviour
 	private void Awake()
 	{
 		Assert.IsNotNull(selectActionButtonPrefab);
-		BaseControlFlowManager.OnActionChange += UpdateActions;
+		BaseState.Instance.OnActionChange += UpdateActions;
 		UpdateActions();
 	}
 
 	private void OnDestroy()
 	{
-		BaseControlFlowManager.OnActionChange -= UpdateActions;
+		BaseState.Instance.OnActionChange -= UpdateActions;
 	}
 
 	private void UpdateActions()

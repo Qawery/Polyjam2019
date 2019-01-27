@@ -9,8 +9,6 @@ public class BaseControlFlowManager : MonoBehaviour
 	[SerializeField] private Text endGameMessage;
 	[SerializeField] private Button endGameButton;
 	private FadeOutScreen fadeOutScreen;
-	public static System.Action OnActionChange;
-	public static System.Action OnResourceChange;
 
 
 	private void Awake()
@@ -21,8 +19,6 @@ public class BaseControlFlowManager : MonoBehaviour
 		EndGameControlsSetActive(false);
 		fadeOutScreen = Resources.FindObjectsOfTypeAll<FadeOutScreen>()[0];
 		Assert.IsNotNull(fadeOutScreen, "Missing dayEndAnimation");
-		BaseState.Instance.OnActionChange += ActionChanged;
-		BaseState.Instance.OnResourceChange += OnResourceChange;
 	}
 
 	private void Start()
@@ -45,8 +41,6 @@ public class BaseControlFlowManager : MonoBehaviour
 	{
 		fadeOutScreen.OnLighteningEnd -= FirstDay;
 		fadeOutScreen.gameObject.SetActive(false);
-		OnActionChange?.Invoke();
-		OnResourceChange?.Invoke();
 	}
 
 	public void BeginNextDay()
@@ -59,8 +53,6 @@ public class BaseControlFlowManager : MonoBehaviour
 		}
 		BaseState.Instance.ChangeValueOfResource(Resource.Food, -1);
 		fadeOutScreen.gameObject.SetActive(false);
-		OnActionChange?.Invoke();
-		OnResourceChange?.Invoke();
 	}
 
 	public void BeginDayEnd()
@@ -82,12 +74,6 @@ public class BaseControlFlowManager : MonoBehaviour
 			fadeOutScreen.OnLighteningEnd += BeginNextDay;
 			GameEndConditionsCheck();
 		}
-	}
-
-	private void OnDestroy()
-	{
-		BaseState.Instance.OnActionChange -= OnActionChange;
-		BaseState.Instance.OnResourceChange -= OnResourceChange;
 	}
 
 	public void GameEndConditionsCheck()
@@ -125,16 +111,6 @@ public class BaseControlFlowManager : MonoBehaviour
 		{
 			fadeOutScreen.StartLightening();
 		}
-	}
-
-	private void ActionChanged()
-	{
-		OnActionChange?.Invoke();
-	}
-
-	private void ResourceChanged()
-	{
-		OnResourceChange?.Invoke();
 	}
 
 	private void EndGameControlsSetActive(bool newState)

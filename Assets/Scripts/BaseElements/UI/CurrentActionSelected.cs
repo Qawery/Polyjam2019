@@ -10,7 +10,7 @@ public class CurrentActionSelected : MonoBehaviour
 
 	private void Awake()
 	{
-		BaseControlFlowManager.OnActionChange += UpdateAction;
+		BaseState.Instance.OnActionChange += UpdateAction;
 		text = GetComponent<Text>();
 		Assert.IsNotNull(text, "Missing text");
 		UpdateAction();
@@ -18,7 +18,7 @@ public class CurrentActionSelected : MonoBehaviour
 
 	private void OnDestroy()
 	{
-		BaseControlFlowManager.OnActionChange -= UpdateAction;
+		BaseState.Instance.OnActionChange -= UpdateAction;
 	}
 
 	private void UpdateAction()
