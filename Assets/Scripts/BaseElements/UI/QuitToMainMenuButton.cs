@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.Assertions;
 
 
-public class EndGameButton : MonoBehaviour
+public class QuitToMainMenuButton : MonoBehaviour
 {
 	private void Awake()
 	{
@@ -14,6 +14,6 @@ public class EndGameButton : MonoBehaviour
 
 	private void OnClicked()
 	{
-		Application.LoadLevel("BaseTest");
+		Application.LoadLevel("MainMenu");
 	}
 }
