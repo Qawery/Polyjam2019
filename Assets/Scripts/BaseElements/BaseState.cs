@@ -8,7 +8,7 @@ public class BaseState : MonoBehaviour
 	public System.Action OnResourceChange;
 	private Dictionary<Resource, int> resources = new Dictionary<Resource, int>();
 	private Dictionary<WorkstationType, Workstation> workstations = new Dictionary<WorkstationType, Workstation>();
-	private Action selectedAction = new NoneAction();
+	private Action selectedAction = new Rest();
 	public int DaysLeft { get; set; } = 30;
 	public int ThreatLevel { get; set; } = 0;
 	public bool wentToMission = false;
@@ -52,7 +52,7 @@ public class BaseState : MonoBehaviour
 			}
 			else
 			{
-				selectedAction = new NoneAction();
+				selectedAction = new Rest();
 				OnActionChange?.Invoke();
 			}
 		}
@@ -75,7 +75,7 @@ public class BaseState : MonoBehaviour
 
 	public void Reset()
 	{
-		selectedAction = new NoneAction();
+		selectedAction = new Rest();
 		DaysLeft = 30;
 		ThreatLevel = 0;
 		resources.Clear();
@@ -114,7 +114,7 @@ public class BaseState : MonoBehaviour
 	public List<Action> GetAvailableAction()
 	{
 		List<Action> result = new List<Action>();
-		result.Add(new NoneAction());
+		result.Add(new Rest());
 		result.Add(new Explore());
 		foreach (var workstation in workstations.Values)
 		{

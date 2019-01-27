@@ -66,7 +66,7 @@ public class BaseControlFlowManager : MonoBehaviour
 	{
 		fadeOutScreen.OnDarkeningEnd -= BeginActionResolve;
 		Action executedAction = BaseState.Instance.SelectedAction;
-		BaseState.Instance.SelectedAction = new NoneAction();
+		BaseState.Instance.SelectedAction = new Rest();
 		BaseState.Instance.ChangeValuesOfResources(executedAction.ActionCost, true);
 		executedAction.Execute();
 		if (!BaseState.Instance.wentToMission)
