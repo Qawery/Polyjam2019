@@ -41,6 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Bodies
+    uniqueID: 1524920881
+    locked: 0
   - name: Characters
     uniqueID: 3288546945
     locked: 0
