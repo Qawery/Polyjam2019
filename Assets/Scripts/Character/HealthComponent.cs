@@ -21,6 +21,8 @@ public class HealthComponent : MonoBehaviour
 			}
 		}
 	}
+
+    public float HealthLeftNormalized { get { return (float) CurrentValue / (maxValue > 0 ? maxValue : 100); } }
 	
 	public event System.Action OnDeath;
 	public event System.Action<int> OnValueChanged;

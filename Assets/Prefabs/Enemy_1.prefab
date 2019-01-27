@@ -269,7 +269,7 @@ MonoBehaviour:
   shotRange: 10
   shotDamage: 30
   meleeRange: 2.2
-  meleeDamage: 100
+  meleeDamage: 30
   attackCooldown: 1
   shotSoundRange: 30
 --- !u!114 &2323804634484195500
