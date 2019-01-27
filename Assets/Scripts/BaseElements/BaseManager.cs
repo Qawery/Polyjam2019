@@ -168,7 +168,6 @@ public class BaseManager : MonoBehaviour
 	private void PostActionResolve()
 	{
 		//TODO: Rozważenie wyniku eksploracji
-		ChangeValueOfResource(Resource.Food, -1);
 		dayEndAnimation.OnLighteningEnd += BeginNewDay;
 		OnPostActionResolve?.Invoke();
 	}
@@ -176,7 +175,11 @@ public class BaseManager : MonoBehaviour
 	public void BeginNewDay()
 	{
 		--DaysLeft;
-		--ThreatLevel;
+		if (ThreatLevel > 0)
+		{
+			--ThreatLevel;
+		}
+		ChangeValueOfResource(Resource.Food, -1);
 		dayEndAnimation.gameObject.SetActive(false);
 		dayEndAnimation.OnLighteningEnd -= BeginNewDay;
 		OnNewDayStart?.Invoke();
