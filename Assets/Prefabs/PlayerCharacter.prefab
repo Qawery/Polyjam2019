@@ -504,6 +504,8 @@ MonoBehaviour:
   meleeDamage: 100
   attackCooldown: 0.7
   shotSoundRange: 10
+  audioSource: {fileID: 6907444200970618015}
+  audioClip: {fileID: 8300000, guid: 1cc531fbb8a9585458e2d5b620a67d92, type: 3}
 --- !u!114 &4196295872132954078
 MonoBehaviour:
   m_ObjectHideFlags: 0
