@@ -22,12 +22,10 @@ public class Altar : Workstation
 				break;
 
 				case 2:
-					result.Add(Resource.Herbs, 1);
 					result.Add(Resource.Clues, 3);
 				break;
 
 				case 3:
-					result.Add(Resource.Herbs, 2);
 					result.Add(Resource.Scrap, 2);
 					result.Add(Resource.Clues, 4);
 				break;

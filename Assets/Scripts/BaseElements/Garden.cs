@@ -26,7 +26,7 @@ public class Garden : Workstation
 					break;
 
 				case 3:
-					result.Add(Resource.Herbs, 1);
+					result.Add(Resource.Food, 2);
 					break;
 
 				case 4:

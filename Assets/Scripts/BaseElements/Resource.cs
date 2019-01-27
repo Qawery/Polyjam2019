@@ -1,4 +1,4 @@
 ﻿public enum Resource
 {
-	Food, Herbs, Scrap, Clues, MAX
+	Food, Scrap, Clues, MAX
 }
