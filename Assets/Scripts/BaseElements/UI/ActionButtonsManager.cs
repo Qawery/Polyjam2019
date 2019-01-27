@@ -43,7 +43,7 @@ public class ActionButtonsManager : MonoBehaviour
 		while (spawnedButtons.Count < availableActions.Count)
 		{
 			SelectActionButton newButton = Instantiate(selectActionButtonPrefab);
-			newButton.transform.parent = transform;
+			newButton.transform.SetParent(transform, false);
 			spawnedButtons.Add(newButton);
 		}
 		buttonIndex = 0;
