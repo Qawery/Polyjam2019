@@ -78,6 +78,7 @@ public class BaseState : MonoBehaviour
 		selectedAction = new Rest();
 		DaysLeft = 30;
 		ThreatLevel = 0;
+		wentToMission = false;
 		resources.Clear();
 		for (int i = 0; i < (int)Resource.MAX; ++i)
 		{

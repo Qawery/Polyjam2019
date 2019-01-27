@@ -1,9 +1,16 @@
 ﻿using UnityEngine;
 
+
 public class HealthComponent : MonoBehaviour
 {
 	[SerializeField] private int maxValue;
 	private int currentValue;
+	public event System.Action OnDeath;
+	public event System.Action<int> OnValueChanged;
+	public event System.Action<int> OnDamageReceived;
+
+
+	public float HealthLeftNormalized { get { return (float)CurrentValue / (maxValue > 0 ? maxValue : 100); } }
 
 	public int CurrentValue
 	{
@@ -21,12 +28,7 @@ public class HealthComponent : MonoBehaviour
 			}
 		}
 	}
-
-    public float HealthLeftNormalized { get { return (float) CurrentValue / (maxValue > 0 ? maxValue : 100); } }
 	
-	public event System.Action OnDeath;
-	public event System.Action<int> OnValueChanged;
-	public event System.Action<int> OnDamageReceived;
 
 	public void Reset()
 	{
