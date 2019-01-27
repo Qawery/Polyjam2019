@@ -5,6 +5,7 @@ using UnityEngine.Assertions;
 
 public class BaseControlFlowManager : MonoBehaviour
 {
+	[SerializeField] private Text endGameTitle;
 	[SerializeField] private Text endGameMessage;
 	[SerializeField] private Button endGameButton;
 	private FadeOutScreen fadeOutScreen;
@@ -14,10 +15,10 @@ public class BaseControlFlowManager : MonoBehaviour
 
 	private void Awake()
 	{
+		Assert.IsNotNull(endGameTitle, "Missing endGameTitle");
 		Assert.IsNotNull(endGameMessage, "Missing endGameMessage");
-		endGameMessage.gameObject.SetActive(false);
 		Assert.IsNotNull(endGameButton, "Missing endGameButton");
-		endGameButton.gameObject.SetActive(false);
+		EndGameControlsSetActive(false);
 		fadeOutScreen = Resources.FindObjectsOfTypeAll<FadeOutScreen>()[0];
 		Assert.IsNotNull(fadeOutScreen, "Missing dayEndAnimation");
 		BaseState.Instance.OnActionChange += ActionChanged;
@@ -94,32 +95,31 @@ public class BaseControlFlowManager : MonoBehaviour
 		bool gameEnded = false;
 		if (BaseState.Instance.DaysLeft <= 0)
 		{
-			endGameMessage.text = "Defeat\n\n";
-			endGameMessage.text += "Your failed to perform ritual in time and world has been overrun by monsters";
+			endGameTitle.text = "Defeat";
+			endGameMessage.text = "Your failed to perform ritual in time and world has been overrun by monsters";
 			gameEnded = true;
 		}
 		else if (BaseState.Instance.GetResourceQuantity(Resource.Food) <= 0)
 		{
-			endGameMessage.text = "Defeat\n\n";
-			endGameMessage.text += "Your starved to death";
+			endGameTitle.text = "Defeat";
+			endGameMessage.text = "Your starved to death";
 			gameEnded = true;
 		}
 		else if (BaseState.Instance.ThreatLevel > 10)
 		{
-			endGameMessage.text = "Defeat\n\n";
-			endGameMessage.text += "You caused too much noise and monsters found your home";
+			endGameTitle.text = "Defeat";
+			endGameMessage.text = "You caused too much noise and monsters found your home";
 			gameEnded = true;
 		}
 		else if (BaseState.Instance.GetWorkstationOfType(WorkstationType.Altar) != null && BaseState.Instance.GetWorkstationOfType(WorkstationType.Altar).CurrentLevel == BaseState.Instance.GetWorkstationOfType(WorkstationType.Altar).MaxLevel)
 		{
-			endGameMessage.text = "Victory\n\n";
-			endGameMessage.text += "You succesfully performed ritual and sealed the gate to monster world";
+			endGameTitle.text = "Victory";
+			endGameMessage.text = "You succesfully performed ritual and sealed the gate to monster world";
 			gameEnded = true;
 		}
 		if (gameEnded)
 		{
-			endGameMessage.gameObject.SetActive(true);
-			endGameButton.gameObject.SetActive(true);
+			EndGameControlsSetActive(true);
 		}
 		else
 		{
@@ -135,5 +135,12 @@ public class BaseControlFlowManager : MonoBehaviour
 	private void ResourceChanged()
 	{
 		OnResourceChange?.Invoke();
+	}
+
+	private void EndGameControlsSetActive(bool newState)
+	{
+		endGameTitle.gameObject.SetActive(newState);
+		endGameMessage.gameObject.SetActive(newState);
+		endGameButton.gameObject.SetActive(newState);
 	}
 }
