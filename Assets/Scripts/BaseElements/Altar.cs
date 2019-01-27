@@ -18,16 +18,16 @@ public class Altar : Workstation
 			switch (CurrentLevel)
 			{
 				case 1:
-					result.Add(Resource.Clues, 2);
+					result.Add(Resource.Gems, 2);
 				break;
 
 				case 2:
-					result.Add(Resource.Clues, 3);
+					result.Add(Resource.Gems, 3);
 				break;
 
 				case 3:
 					result.Add(Resource.Scrap, 2);
-					result.Add(Resource.Clues, 4);
+					result.Add(Resource.Gems, 4);
 				break;
 			}
 			return result;

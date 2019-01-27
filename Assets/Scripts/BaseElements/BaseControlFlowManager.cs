@@ -47,10 +47,6 @@ public class BaseControlFlowManager : MonoBehaviour
 	{
 		fadeOutScreen.OnLighteningEnd -= BeginNextDay;
 		--BaseState.Instance.DaysLeft;
-		if (BaseState.Instance.ThreatLevel > 0)
-		{
-			--BaseState.Instance.ThreatLevel;
-		}
 		BaseState.Instance.ChangeValueOfResource(Resource.Food, -1);
 		fadeOutScreen.gameObject.SetActive(false);
 	}
@@ -89,12 +85,6 @@ public class BaseControlFlowManager : MonoBehaviour
 		{
 			endGameTitle.text = "Defeat";
 			endGameMessage.text = "Your starved to death";
-			gameEnded = true;
-		}
-		else if (BaseState.Instance.ThreatLevel > 10)
-		{
-			endGameTitle.text = "Defeat";
-			endGameMessage.text = "You caused too much noise and monsters found your home";
 			gameEnded = true;
 		}
 		else if (BaseState.Instance.GetWorkstationOfType(WorkstationType.Altar) != null && BaseState.Instance.GetWorkstationOfType(WorkstationType.Altar).CurrentLevel == BaseState.Instance.GetWorkstationOfType(WorkstationType.Altar).MaxLevel)

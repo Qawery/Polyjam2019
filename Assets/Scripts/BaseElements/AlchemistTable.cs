@@ -26,7 +26,7 @@ public class AlchemistTable : Workstation
 					break;
 
 				case 3:
-					result.Add(Resource.Clues, 1);
+					result.Add(Resource.Gems, 1);
 					break;
 			}
 			return result;

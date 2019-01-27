@@ -27,7 +27,7 @@ public class Workshop : Workstation
 
 				case 3:
 					result.Add(Resource.Scrap, 1);
-					result.Add(Resource.Clues, 1);
+					result.Add(Resource.Gems, 1);
 					break;
 			}
 			return result;

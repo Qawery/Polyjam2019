@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -257,8 +257,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 93379137}
-  - {fileID: 370437786}
   - {fileID: 1152023246}
+  - {fileID: 370437786}
   m_Father: {fileID: 1858407760}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -427,7 +427,7 @@ RectTransform:
   m_Children:
   - {fileID: 1245443357}
   m_Father: {fileID: 117883328}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -929,15 +929,14 @@ MonoBehaviour:
 
     If time run out the monsters will overrun the world.
 
-    If threat level exceed 10 you will gain too much attention from monsters and they
-    will find your house.
-
     You consume 1 Food per day. If You run out of Food you lose.
 
-    Upgrading other elements of base will increase your chances of survival.
+    To gain resources explore surroundings.
+
+    Upgrading your house will increase your chances of survival.
 
 
-    CONTROLS:
+    Controls:
 
     Left Mouse Click - Move
 
@@ -947,7 +946,14 @@ MonoBehaviour:
 
 
     To move your character, keep LMB pressed; the farther the cursor is from the character,
-    the faster he will move, but he will also produce more noise...'
+    the faster he will move, but he will also produce more noise.
+
+
+    Upgrading Alchemist Table increases health.
+
+    Upgrading Workshop increases attack rande and damage.
+
+    Performing upgrade takes one day.'
 --- !u!222 &444446332
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1820,7 +1826,7 @@ RectTransform:
   - {fileID: 1627603017}
   - {fileID: 1308901061}
   m_Father: {fileID: 117883328}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}

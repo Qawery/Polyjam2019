@@ -8,10 +8,9 @@ public class BaseState : MonoBehaviour
 	public System.Action OnResourceChange;
 	private Dictionary<Resource, int> resources = new Dictionary<Resource, int>();
 	private Dictionary<WorkstationType, Workstation> workstations = new Dictionary<WorkstationType, Workstation>();
-	private Action selectedAction = new Rest();
-	public int DaysLeft { get; set; } = 30;
-	public int ThreatLevel { get; set; } = 0;
-	public bool wentToMission = false;
+	private Action selectedAction;
+	public int DaysLeft { get; set; }
+	public bool wentToMission;
 
 
     private static BaseState instance = null;
@@ -76,8 +75,7 @@ public class BaseState : MonoBehaviour
 	public void Reset()
 	{
 		selectedAction = new Rest();
-		DaysLeft = 30;
-		ThreatLevel = 0;
+		DaysLeft = 10;
 		wentToMission = false;
 		resources.Clear();
 		for (int i = 0; i < (int)Resource.MAX; ++i)
@@ -94,7 +92,7 @@ public class BaseState : MonoBehaviour
 		//Startowe zasoby
 		resources[Resource.Food] += 4;
 		resources[Resource.Scrap] += 1;
-		resources[Resource.Clues] += 1;
+		resources[Resource.Gems] += 1;
 	}
 
 	public Workstation GetWorkstationOfType(WorkstationType workstationType)
