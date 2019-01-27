@@ -14,10 +14,10 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Enemies
+  - Obstacles
+  - Sight
   - 
   - 
   - 
@@ -38,9 +38,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Characters
-    uniqueID: 3288546945
-    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Characters
+    uniqueID: 3288546945
     locked: 0
