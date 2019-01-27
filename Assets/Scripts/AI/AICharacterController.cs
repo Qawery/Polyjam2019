@@ -1,29 +1,24 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public struct PatrolPointData
-{
-    [SerializeField] private Transform transform;
-    public float waitTime;
-    public Vector3 Position => transform.position;
-}
-
 public class AICharacterController : MonoBehaviour
 {
-    [SerializeField] private PatrolPointData[] patrolPoints;
+    [SerializeField] private GameObject patrolRoute;
     [SerializeField] private float maxMovementSpeed = 5.0f;
     private StateMachine stateMachine = null;
+    private PatrolPoint[] patrolPoints;
+
     
     public VisionCone Vision { get; private set; }
     public HearingComponent Hearing { get; private set; }
-    public PatrolPointData[] PatrolPoints => patrolPoints;
+    public PatrolPoint[] PatrolPoints => patrolPoints;
     public float MaxMovementSpeed => maxMovementSpeed;
     
     void Awake()
     {
         Vision = GetComponent<VisionCone>();
         Hearing = GetComponent<HearingComponent>();
+        patrolPoints = patrolRoute.GetComponentsInChildren<PatrolPoint>();
         stateMachine = new StateMachine(this, new Patrol());
     }
 

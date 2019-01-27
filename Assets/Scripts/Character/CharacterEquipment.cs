@@ -36,6 +36,7 @@ namespace Polyjam2019
         {
             if(CurrentlyAvailableItem != null)
             {
+                Debug.Log("Starting to pick up " + CurrentlyAvailableItem);
                 CurrentlyAvailableItem.StartPickingUp(this);
             }
         }

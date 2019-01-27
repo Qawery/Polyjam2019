@@ -269,8 +269,9 @@ MonoBehaviour:
   shotRange: 10
   shotDamage: 30
   meleeRange: 2.2
-  meleeDamage: 100
+  meleeDamage: 30
   attackCooldown: 1
+  shotSoundRange: 30
 --- !u!114 &2323804634484195500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,24 +284,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6b9ee9bda4a98849a0f35683da05313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrolPoints:
-  - transform: {fileID: 0}
-    waitTime: 0
-  - transform: {fileID: 0}
-    waitTime: 2
-  - transform: {fileID: 0}
-    waitTime: 0
-  - transform: {fileID: 0}
-    waitTime: 5
-  - transform: {fileID: 0}
-    waitTime: 2
-  - transform: {fileID: 0}
-    waitTime: 0
-  - transform: {fileID: 0}
-    waitTime: 0
-  - transform: {fileID: 0}
-    waitTime: 0
-  maxMovementSpeed: 5
+  patrolRoute: {fileID: 0}
+  maxMovementSpeed: 4
 --- !u!114 &8369293408485537827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,7 +316,7 @@ MonoBehaviour:
   maxAcceleration: -2.5
   rotationSpeed: 360
   slowdownDistance: 0.1
-  pickNextWaypointDist: 0.5
+  pickNextWaypointDist: 1
   endReachedDistance: 0.2
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1

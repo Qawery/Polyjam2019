@@ -39,11 +39,12 @@ public class PlayerCharacterController : MonoBehaviour
 			movement.Stop();
 		}
 
-		if (Input.GetKey(shotKey))
-		{
-			combat.Shoot();
-		}
-		else if(Input.GetKey(meleeAttackKey))
+//		if (Input.GetKey(shotKey))
+//		{
+//			combat.Shoot();
+//		}
+//		else
+		if(Input.GetKey(meleeAttackKey))
 		{
 			combat.PerformMeleeAttack();
 		}
@@ -51,5 +52,6 @@ public class PlayerCharacterController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.E) && equipment != null && equipment.ItemAvailableForPickup)
         {
             equipment.PickItem();
-        }	}
+        }	
+	}
 }

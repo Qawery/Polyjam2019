@@ -34,7 +34,7 @@ public class Patrol : StateMachineBehavior
 
 	public override StateMachineBehavior Update(AICharacterController owner, float deltaTime)
 	{
-		PatrolPointData currentPatrolPoint = owner.PatrolPoints[currentPatrolPointIndex];
+		PatrolPoint currentPatrolPoint = owner.PatrolPoints[currentPatrolPointIndex];
 		Vector3 dest = currentPatrolPoint.Position;
 		if (Vector3.Distance(dest, owner.transform.position) < 1.0f)
 		{
