@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 4196295872132954078}
   - component: {fileID: 6907444200970618015}
   - component: {fileID: 4507089318037479749}
+  - component: {fileID: 5586870420912171323}
   m_Layer: 9
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -468,3 +469,20 @@ MonoBehaviour:
   maxSoundRadius: 5
   speedForMaxSoundRadius: 4
   stepDistance: 1.5
+--- !u!114 &5586870420912171323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4507089318037479748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a293f2bba61af04e98c5d809e674c85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxWeight: 1000
+  maxSize: 1000
+  limitWeight: 0
+  limitSize: 0
+  CurrentlyAvailableItem: {fileID: 0}

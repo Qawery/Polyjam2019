@@ -52,5 +52,6 @@ public class PlayerCharacterController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.E) && equipment != null && equipment.ItemAvailableForPickup)
         {
             equipment.PickItem();
-        }	}
+        }	
+	}
 }

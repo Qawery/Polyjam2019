@@ -285,7 +285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patrolRoute: {fileID: 0}
-  maxMovementSpeed: 5
+  maxMovementSpeed: 4
 --- !u!114 &8369293408485537827
 MonoBehaviour:
   m_ObjectHideFlags: 0
