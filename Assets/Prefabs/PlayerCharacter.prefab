@@ -450,7 +450,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minDistanceToCursor: 0.1
   maxDistanceToCursor: 4
-  distanceFalloffExponent: 0.5
+  distanceFalloffExponent: 0.82
   shotKey: 324
   meleeAttackKey: 324
 --- !u!114 &3430681892415836153
@@ -520,8 +520,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundCircle: {fileID: 73348697540102912}
-  alphaTransitionSpeed: 0.2
-  maxAlpha: 0.1
+  alphaTransitionSpeed: 2
+  maxAlpha: 1
 --- !u!82 &6907444200970618015
 AudioSource:
   m_ObjectHideFlags: 0
